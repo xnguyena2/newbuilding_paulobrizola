@@ -23,6 +23,9 @@ namespace AssemblyCSharp
 		static Vector3 o1 = new Vector3 (3.230011F, 1.5F, 13.69F);
 		static Vector3 o2 = new Vector3 (10.48999F, 1.5F, 9.830002F);
 		
+		static Vector3 pos1 = new Vector3 (294.2f, 71.3f, 239.4f);
+		static Vector3 lookat1 = new Vector3 (294.0f, 31.1f, 205.0f);
+		
 		static Vector3[] office1 = new Vector3[] { stair, o1 };
 		static Vector3[] office2 = new Vector3[] { stair, o2 };
 		
@@ -33,11 +36,11 @@ namespace AssemblyCSharp
 		public Point8_5 ()
 		{
 			
-			/*LookatCamera.Add("office1",lookat1);
-			LookatCamera.Add("office2",lookat2);
+			LookatCamera.Add("office1",lookat1);
+			LookatCamera.Add("office2",lookat1);
 
 			PositnCamera.Add("office1",pos1);
-			PositnCamera.Add("office2",pos2);*/
+			PositnCamera.Add("office2",pos1);
 
 			dictionary.Add("office1",office1);
 			dictionary.Add("office2",office2);

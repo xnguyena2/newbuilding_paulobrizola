@@ -6,7 +6,7 @@
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
 	<RootNamespace></RootNamespace>
-	<ProjectGuid>{66A2D8F5-1BA8-FE53-7F03-013589BFD8F3}</ProjectGuid>
+	<ProjectGuid>{8FCB8E75-73E6-DBB3-2635-F6BFA00CDB59}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<AssemblyName>Assembly-CSharp</AssemblyName>
@@ -57,10 +57,10 @@
      <Compile Include="Assets\script\ControlEvent.cs" />
      <Compile Include="Assets\script\DragVideo.cs" />
      <Compile Include="Assets\script\Point8_1.cs" />
+     <Compile Include="Assets\script\Point8_1handicap.cs" />
      <Compile Include="Assets\script\Point8_2.cs" />
-     <Compile Include="Assets\script\Point8_2handicap.cs" />
+     <Compile Include="Assets\script\Point8_2handi.cs" />
      <Compile Include="Assets\script\Point8_3.cs" />
-     <Compile Include="Assets\script\Point8_3handicap.cs" />
      <Compile Include="Assets\script\Point8_4.cs" />
      <Compile Include="Assets\script\Point8_4handicap.cs" />
      <Compile Include="Assets\script\Point8_5.cs" />
@@ -68,9 +68,11 @@
      <Compile Include="Assets\script\ShowCrsVideo.cs" />
      <Compile Include="Assets\script\animationEventTrigger.cs" />
      <Compile Include="Assets\script\arrow.cs" />
+     <Compile Include="Assets\script\cinema.cs" />
      <Compile Include="Assets\script\cylinderarrow.cs" />
      <Compile Include="Assets\script\events.cs" />
      <Compile Include="Assets\script\fixPostion.cs" />
+     <Compile Include="Assets\script\theater.cs" />
      <Compile Include="Assets\script\writetofile.cs" />
      <None Include="Assets\AVProWindowsMedia\Resources\YUV_HDYC2RGBA.shader" />
      <None Include="Assets\AVProWindowsMedia\Resources\YUV_YUY22RGBA.shader" />
@@ -101,7 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{8D36C85E-E27C-12AF-34BD-D8A804592425}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{A7191334-9ABF-1E2D-E294-EE8525ED5EF7}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

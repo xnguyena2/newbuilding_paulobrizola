@@ -31,14 +31,19 @@ namespace AssemblyCSharp
 
 		public static Vector3 stair = new Vector3 (1.599976F, 1.5F, 5.430008F);
 
+		static Vector3 pos1 = new Vector3 (294.2f, 69.6f, 239.3f);
+		static Vector3 lookat1 = new Vector3 (294.0f, 29.9f, 205.0f);
+
 		
 		static Vector3[] office1 = new Vector3[] { stair, p1, f1, o1 };
 		static Vector3[] office2 = new Vector3[] { stair, p1, o2 };
 		static Vector3[] office3 = new Vector3[] { stair, o3 };		
 		static Vector3[] office4 = new Vector3[] { stair, o4 };
 		static Vector3[] office5 = new Vector3[] { stair, p1, f5, o5 };
-		
 
+		static Vector3[] start1 = new Vector3[] { stair};
+
+		public Dictionary<string, Vector3[]> dicStart = new Dictionary<string, Vector3[]>();
 		public Dictionary<string, Vector3[]> dictionary = new Dictionary<string, Vector3[]>();
 		public Dictionary<string,Vector3> PositnCamera = new Dictionary<string, Vector3> ();
 		public Dictionary<string,Vector3> LookatCamera = new Dictionary<string, Vector3> ();
@@ -46,24 +51,43 @@ namespace AssemblyCSharp
 		public Point8_4 ()
 		{
 			
-			/*LookatCamera.Add("office1",lookat1);
-			LookatCamera.Add("office2",lookat2);
-			LookatCamera.Add("office3",lookat3);
-			LookatCamera.Add("office4",lookat4);
-			LookatCamera.Add("office5",lookat5);
+			LookatCamera.Add("office1",lookat1);
+			LookatCamera.Add("office2",lookat1);
+			LookatCamera.Add("office3",lookat1);
+			LookatCamera.Add("office4",lookat1);
+			LookatCamera.Add("office5",lookat1);
 
 			PositnCamera.Add("office1",pos1);
-			PositnCamera.Add("office2",pos2);
-			PositnCamera.Add("office3",pos3);
-			PositnCamera.Add("office4",pos4);
-			PositnCamera.Add("office5",pos5);*/
+			PositnCamera.Add("office2",pos1);
+			PositnCamera.Add("office3",pos1);
+			PositnCamera.Add("office4",pos1);
+			PositnCamera.Add("office5",pos1);
 
 			dictionary.Add("office1",office1);
 			dictionary.Add("office2",office2);
 			dictionary.Add("office3",office3);
 			dictionary.Add("office4",office4);
 			dictionary.Add("office5",office5);
+
+			dicStart.Add ("start1", start1);
 		}
+
+		public void addNewOffice(string name, string nameStart, Vector3[] append,string camrea)
+		{
+			Vector3[] start = dicStart [nameStart];
+			int length = start.Length + append.Length;
+			Vector3[] arrayVectorOffice = new Vector3[length];
+			for (int i = 0; i< length; i++) {
+				if(i<start.Length){
+					arrayVectorOffice[i] = start[i];
+				}
+				else {
+					arrayVectorOffice[i] = append[i - start.Length];
+				}
+			}
+			dictionary.Add (name, arrayVectorOffice);
+		}
+
 	}
 }
 
