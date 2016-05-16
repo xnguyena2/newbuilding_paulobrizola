@@ -68,9 +68,11 @@
      <Compile Include="Assets\script\ShowCrsVideo.cs" />
      <Compile Include="Assets\script\animationEventTrigger.cs" />
      <Compile Include="Assets\script\arrow.cs" />
+     <Compile Include="Assets\script\cinema.cs" />
      <Compile Include="Assets\script\cylinderarrow.cs" />
      <Compile Include="Assets\script\events.cs" />
      <Compile Include="Assets\script\fixPostion.cs" />
+     <Compile Include="Assets\script\theater.cs" />
      <Compile Include="Assets\script\writetofile.cs" />
      <None Include="Assets\AVProWindowsMedia\Resources\YUV_HDYC2RGBA.shader" />
      <None Include="Assets\AVProWindowsMedia\Resources\YUV_YUY22RGBA.shader" />

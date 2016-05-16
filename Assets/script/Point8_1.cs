@@ -22,6 +22,8 @@ namespace AssemblyCSharp
 
 		static Vector3 evelator = new Vector3(0.97F, 1.5F, 18.26F);
 
+		static Vector3 begin77 = new Vector3(-6.21F, 1.5F, -14.97F);
+
 		static Vector3 of1 = new Vector3 (28.32001F, 1.5F, -29.59F);
 		static Vector3 of2 = new Vector3 (21.35001F, 1.5F, -22.63F);
 		static Vector3 of3 = new Vector3 (21.35001F, 1.5F, -19.93001F);
@@ -272,8 +274,22 @@ namespace AssemblyCSharp
 		static Vector3[] office74 = new Vector3[] { start, p7, f74, of74 };
 		static Vector3[] office75 = new Vector3[] { start, p7, f75, of75 };
 		static Vector3[] office76 = new Vector3[] { start, p7, f76, of76 };
-		static Vector3[] office77 = new Vector3[] { start, p7, f77, of77 };
+		static Vector3[] office77 = new Vector3[] { begin77, f77, of77 };
 		static Vector3[] gotoEvelator = new Vector3[] { start, p14, evelator };
+
+		static Vector3[] start1 = new Vector3[] { start, p1};
+		static Vector3[] start2 = new Vector3[] { start, p1, p2};
+		static Vector3[] start3 = new Vector3[] { start, p1, p4, p3};
+		static Vector3[] start4 = new Vector3[] { start, p4};
+		static Vector3[] start5 = new Vector3[] { start, p5 };
+		static Vector3[] start6 = new Vector3[] { start, p5, p6};
+		static Vector3[] start7 = new Vector3[] { start, p7 };
+		static Vector3[] start8 = new Vector3[] { start, p5, p6, p8 };
+		static Vector3[] start9 = new Vector3[] { start, p1, p9 };
+		static Vector3[] start10 = new Vector3[] { start, p1, p9, p10 };
+		static Vector3[] start11 = new Vector3[] { start, p1, p9, p10, p11 };
+		static Vector3[] start12 = new Vector3[] { start, p1, p9, p10, p11, p12 };
+		static Vector3[] start13 = new Vector3[] { start, p13};
 
 		static Vector3[] stairRoute = new Vector3[] { start, p13, stair };
 
@@ -432,10 +448,14 @@ namespace AssemblyCSharp
 		static Vector3 lookat76 = new Vector3 (278.8F, 18.2F, 205.0F);
 		static Vector3 pos77 = new Vector3 (266.7F, 59.0F, 226.9F);
 		static Vector3 lookat77 = new Vector3 (278.8F, 18.2F, 205.0F);
-		static Vector3 stairpos = new Vector3 (240.1F, 36.9F, 231.5F);
-		static Vector3 stairlookat = new Vector3 (268.6F, 18.0F, 205.0F);
+		static Vector3 stairpos = new Vector3 (248.3f, 27.6f, 222.2f);
+		static Vector3 stairlookat = new Vector3 (274.2f, 14.3f, 205.0f);
+		static Vector3 posbathroom = new Vector3 (266.7F, 59.0F, 226.9F);
+		static Vector3 lookatbathroom = new Vector3 (278.8F, 18.2F, 205.0F);
 		
 		public Dictionary<string, Vector3[]> dictionary = new Dictionary<string, Vector3[]>();
+
+		public Dictionary<string, Vector3[]> dicStart = new Dictionary<string, Vector3[]>();
 
 		public Dictionary<string,Vector3> PositnCamera = new Dictionary<string, Vector3> ();
 		public Dictionary<string,Vector3> LookatCamera = new Dictionary<string, Vector3> ();
@@ -522,8 +542,10 @@ namespace AssemblyCSharp
 			LookatCamera.Add("office75",lookat75);
 			LookatCamera.Add("office76",lookat76);
 			LookatCamera.Add("office77",lookat77);
+			LookatCamera.Add("office78",lookat1);
 			LookatCamera.Add("stair",stairlookat);
 			LookatCamera.Add("evelator",lookat23);
+			LookatCamera.Add("lookatbathroom",lookatbathroom);
 
 			
 			PositnCamera.Add("office1",pos1);
@@ -603,8 +625,10 @@ namespace AssemblyCSharp
 			PositnCamera.Add("office75",pos75);
 			PositnCamera.Add("office76",pos76);
 			PositnCamera.Add("office77",pos77);
+			PositnCamera.Add("office78",pos1);
 			PositnCamera.Add("stair",stairpos);
 			PositnCamera.Add("evelator",pos23);
+			PositnCamera.Add("posbathroom",posbathroom);
 
 			dictionary.Add("office1",office1);
 			dictionary.Add("office2",office2);
@@ -684,10 +708,42 @@ namespace AssemblyCSharp
 			dictionary.Add("office76",office76);
 			dictionary.Add("office77",office77);
 			dictionary.Add ("stair", stairRoute);
-			dictionary.Add ("evelator", gotoEvelator);
+			dictionary.Add ("evelator", gotoEvelator);			
 
-			
+			dicStart.Add ("start1", start1);
+			dicStart.Add ("start2", start2);
+			dicStart.Add ("start3", start3);
+			dicStart.Add ("start4", start4);
+			dicStart.Add ("start5", start5);
+			dicStart.Add ("start6", start6);
+			dicStart.Add ("start7", start7);
+			dicStart.Add ("start8", start8);
+			dicStart.Add ("start9", start9);
+			dicStart.Add ("start10", start10);
+			dicStart.Add ("start11", start11);
+			dicStart.Add ("start12", start12);
+			dicStart.Add ("start13", start13);
 		}
+
+		public void addNewOffice(string name, string nameStart, Vector3[] append,string camera)
+		{
+			Vector3[] start = dicStart [nameStart];
+			int length = start.Length + append.Length;
+			Vector3[] arrayVectorOffice = new Vector3[length];
+			for (int i = 0; i< length; i++) {
+				if(i<start.Length){
+					arrayVectorOffice[i] = start[i];
+				}
+				else {
+					arrayVectorOffice[i] = append[i - start.Length];
+				}
+			}
+			//Debug.Log (name);
+			dictionary.Add (name, arrayVectorOffice);
+			PositnCamera.Add(name, PositnCamera[camera]);
+			LookatCamera.Add(name,LookatCamera[camera]);
+		}
+
 	}
 }
 

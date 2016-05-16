@@ -1,7 +1,10 @@
 
-static Vector3 8_4office1 = new Vector3 (296.3, 77.6, 236.3);
-static Vector3 8_4lookat1 = new Vector3 (292.7, 33.0, 205.0);
-static Vector3 8_5office2 = new Vector3 (240.1, 36.9, 231.5);
-static Vector3 8_5lookat2 = new Vector3 (268.6, 18.0, 205.0);
-static Vector3 8_5office2 = new Vector3 (268.4, 18.7, 219.0);
-static Vector3 8_5lookat2 = new Vector3 (280.2, 6.2, 205.0);
+static Vector3 8_2office73 = new Vector3 (259.0, 31.1, 211.3);
+static Vector3 8_2lookat73 = new Vector3 (269.4, 19.9, 205.0);(259.0, 31.1, 211.3);
+static Vector3 8_2lookat73 = new Vector3 (269.4, 19.9, 205.0);
+static Vector3 8_2office73 = new Vector3 (252.5, 30.6, 216.6);
+static Vector3 8_2lookat73 = new Vector3 (274.1, 14.4, 205.0);(252.5, 30.6, 216.6);
+static Vector3 8_2lookat73 = new Vector3 (274.1, 14.4, 205.0);(252.5, 30.6, 216.6);
+static Vector3 8_2lookat73 = new Vector3 (274.1, 14.4, 205.0);
+static Vector3 8_4office3 = new Vector3 (248.3, 27.6, 222.2);
+static Vector3 8_4lookat3 = new Vector3 (274.2, 14.3, 205.0);

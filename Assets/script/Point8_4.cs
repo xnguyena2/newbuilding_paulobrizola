@@ -37,8 +37,10 @@ namespace AssemblyCSharp
 		static Vector3[] office3 = new Vector3[] { stair, o3 };		
 		static Vector3[] office4 = new Vector3[] { stair, o4 };
 		static Vector3[] office5 = new Vector3[] { stair, p1, f5, o5 };
-		
 
+		static Vector3[] start1 = new Vector3[] { stair};
+
+		public Dictionary<string, Vector3[]> dicStart = new Dictionary<string, Vector3[]>();
 		public Dictionary<string, Vector3[]> dictionary = new Dictionary<string, Vector3[]>();
 		public Dictionary<string,Vector3> PositnCamera = new Dictionary<string, Vector3> ();
 		public Dictionary<string,Vector3> LookatCamera = new Dictionary<string, Vector3> ();
@@ -63,7 +65,26 @@ namespace AssemblyCSharp
 			dictionary.Add("office3",office3);
 			dictionary.Add("office4",office4);
 			dictionary.Add("office5",office5);
+
+			dicStart.Add ("start1", start1);
 		}
+
+		public void addNewOffice(string name, string nameStart, Vector3[] append,string camrea)
+		{
+			Vector3[] start = dicStart [nameStart];
+			int length = start.Length + append.Length;
+			Vector3[] arrayVectorOffice = new Vector3[length];
+			for (int i = 0; i< length; i++) {
+				if(i<start.Length){
+					arrayVectorOffice[i] = start[i];
+				}
+				else {
+					arrayVectorOffice[i] = append[i - start.Length];
+				}
+			}
+			dictionary.Add (name, arrayVectorOffice);
+		}
+
 	}
 }
 
