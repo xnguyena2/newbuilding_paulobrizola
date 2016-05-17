@@ -2,7 +2,8 @@
   <MonoDevelop.Ide.Workspace />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\ControlEvent.cs">
     <Files>
-      <File FileName="Assets\script\ControlEvent.cs" Line="2059" Column="2" />
+      <File FileName="Assets\script\ControlEvent.cs" Line="2994" Column="5" />
+      <File FileName="..\..\gavea_kiosk2\Assets\script\ControlEvent.cs" Line="3000" Column="10" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
