@@ -223,7 +223,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 	private System.Timers.Timer showTimeTimer;
 	private System.Timers.Timer fullScreenTimer;
 	private System.Timers.Timer hideInfomationTimer;
-	private System.Timers.Timer timerBoom;
+	private System.Timers.Timer closeTimer;
 	
 	public string IP = "http://localhost:8080/";
 	
@@ -319,6 +319,13 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 
 		hideInfomationTimer.Stop ();
 
+
+		closeTimer = new System.Timers.Timer (30000);
+		
+		closeTimer.Elapsed += OnCloseCinema;
+		
+		closeTimer.Stop ();
+
 		aTimer = new System.Timers.Timer(30000);
 		
 		// Hook up the Elapsed event for the timer. 
@@ -404,18 +411,17 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 
 	bool isCinemaPress = false;
 	public void cinemaPress(){
-		StartCoroutine (showCinema ());
-		//showBlockSelector ();
-	}
-
-	private IEnumerator showCinema(){
-		yield return new WaitForSeconds(0.2F);//for 64bit
-		showCarousel (false);
-		isCinemaPress = true;
 		resetTimer ();
 		hideEventAndInfomation ();
 		exitvideo ();
 		hideOldeScreen ();
+		StartCoroutine (showCinema ());
+		closeTimer.Start ();
+		isCinemaPress = true;
+	}
+
+	private IEnumerator showCinema(){
+		yield return new WaitForSeconds(0.2F);//for 64bit
 		
 		//showFullTransparent ();
 		currentCinema = 0;
@@ -427,24 +433,25 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 				index++;
 			}
 		}
-		
+
 		GameObject.Find ("PanelcontainCinema").GetComponent<Animator> ().SetBool (m_OpenMovieParameterId, true);
 		currentNameLayoutShow = "PanelcontainCinema";
+		showCarousel (false);
 	}
 
 	public void theaterPress(){
+		resetTimer ();
+		hideEventAndInfomation ();
+		exitvideo ();
+		hideOldeScreen ();
 		StartCoroutine (showTheater ());
+		isCinemaPress = true;
+		closeTimer.Start ();
 		//showBlockSelector ();
 	}
 	
 	private IEnumerator showTheater(){
 		yield return new WaitForSeconds(0.2F);//for 64bit
-		showCarousel (false);
-		isCinemaPress = true;
-		resetTimer ();
-		hideEventAndInfomation ();
-		exitvideo ();
-		hideOldeScreen ();
 		
 		//showFullTransparent ();
 		currentTheater = 0;
@@ -459,6 +466,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 		
 		GameObject.Find ("PanelcontainTheater").GetComponent<Animator> ().SetBool (m_OpenMovieParameterId, true);
 		currentNameLayoutShow = "PanelcontainTheater";
+		showCarousel (false);
 	}
 
 	static public Dictionary<string,Sprite> ResourcesDictionary = new Dictionary<string, Sprite> ();
@@ -845,6 +853,12 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 	private void OnShowHideInfoEvent(object o, System.Timers.ElapsedEventArgs e)
 	{
 		isHideInfomation = true;
+	}
+	
+	bool isCloseCinema = false;
+	private void OnCloseCinema(object o, System.Timers.ElapsedEventArgs e)
+	{
+		isCloseCinema = true;
 	}
 
 	bool isStopApplication = false;
@@ -2077,6 +2091,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 				isCinemaPress = false;
 				hideCinemaLayout();
 				showCarousel(true);
+				closeTimer.Stop();
 			}
 			else
 				GameObject.Find (currentNameLayoutShow).GetComponent<Animator> ().SetBool (m_OpenParameterId, false);
@@ -2994,6 +3009,11 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 				hideInfomationTimer.Stop();
 				gotoFloor(2);
 				//Debug.Log("show Initial");
+			}
+			if(isCloseCinema){
+				isCloseCinema = false;
+				ClosePress();
+				closeTimer.Stop();
 			}
 		}
 	}
