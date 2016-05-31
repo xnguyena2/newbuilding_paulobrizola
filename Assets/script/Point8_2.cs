@@ -242,9 +242,9 @@ public class Point8_2
 	static Vector3[] office48 = new Vector3[] { start, p1, p3, f48, o48 };
 	static Vector3[] office49 = new Vector3[] { start, p1, p3, f49, o49 };
 	static Vector3[] office50 = new Vector3[] { start, p1, p3, f50, o50 };
-	static Vector3[] office51 = new Vector3[] { start, p1, f51, o51 };
-	static Vector3[] office52 = new Vector3[] { start, p1, f52, o52 };
-	static Vector3[] office53 = new Vector3[] { start, p1, f53, o53 };
+	static Vector3[] office51 = new Vector3[] { start, f51, o51 };
+	static Vector3[] office52 = new Vector3[] { start, f52, o52 };
+	static Vector3[] office53 = new Vector3[] { start, f53, o53 };
 	static Vector3[] office54 = new Vector3[] { start, f54, o54 };
 	static Vector3[] office55 = new Vector3[] { start, p1, p2, f55, o55 };
 	static Vector3[] office56 = new Vector3[] { start, p1, p2, f56, o56 };

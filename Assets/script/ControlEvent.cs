@@ -755,6 +755,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 	*/
 
 	public void rangeBtnPress(string number){
+		resetTimer ();
 		hideRangeNuber ();
 		StartCoroutine( searchOfficeInRange (number));
 	}
@@ -1291,6 +1292,13 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 			endAnimation.transform.position = listpoint [listpoint.Length - 1] - new Vector3(0,1.8f,0);
 		}
 		else {
+			if(endAnimation == null){
+				endAnimation = GameObject.Find ("containAnimation");
+				if(endAnimation == null){
+					endAnimation = Instantiate(Resources.Load("containAnimation", typeof(GameObject))) as GameObject;
+					endAnimation.name = "containAnimation";
+				}
+			}
 			GameObject endpathroom = GameObject.Instantiate (endAnimation)as GameObject;
 			endpathroom.name = "endpathroom";
 			endpathroom.transform.position = listpoint [listpoint.Length - 1] - new Vector3(0,1.8f,0);
@@ -1417,6 +1425,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
     string nameOfSearchBlock,routeBettwenBlock;
 
 	public void officeClickEvent(Button name){
+		resetTimer ();
 		StartCoroutine (officeClick (name));
 	}
 	
@@ -1529,7 +1538,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 		foreach (var gameObj in FindObjectsOfType(typeof(GameObject)) as GameObject[])
 		{
 			string nameobj = gameObj.name;
-			if(nameobj == "lineDirection" || nameobj == "arrowsssss" || nameobj == "endpathroom")
+			if(nameobj == "lineDirection" || nameobj == "ball" || nameobj == "endpathroom")
 			{
 				Destroy(gameObj);
 			}
@@ -2017,10 +2026,12 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 	}
 
 	public void nextSegment(){
+		resetTimer ();
 		StartCoroutine (nextSgm ());
 	}
 
 	public void previosSegment(){
+		resetTimer ();
 		StartCoroutine (previSgm ());
 	}
 	
@@ -2145,6 +2156,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 	}
 
 	public void nextEvent(){
+		resetTimer ();
 		if (eventId.Count > maxEvent) {
 			for (int i = 1; i <= maxEvent; i++) {
 				if (currentEvent < eventId.Count) {
@@ -2197,6 +2209,9 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 	
 	public void nextCinema(){
 		//Debug.Log (cinemaId.Count);
+		resetTimer ();
+		closeTimer.Stop ();
+		closeTimer.Start ();
 		if (cinemaId.Count > maxCinema) {
 			//Debug.Log("currentCinema:"+currentCinema);
 			for (int i = 1; i <= maxCinema; i++) {
@@ -2243,6 +2258,9 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 	
 	public void nextTheater(){
 		//Debug.Log (cinemaId.Count);
+		resetTimer ();
+		closeTimer.Stop ();
+		closeTimer.Start ();
 		if (theaterId.Count > maxTheater) {
 			//Debug.Log("currentCinema:"+currentCinema);
 			for (int i = 1; i <= maxTheater; i++) {
@@ -2286,6 +2304,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 	}
 
 	public void searchOfficeBySegment(int index){
+		resetTimer ();
 		string segement,nameOfContainPanel = "Panelcontainsegments";
 		segement = segmentNameArray [index + offset];
 		Debug.Log (offset + "," + segement);
@@ -2349,6 +2368,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 	}
 	
 	public void next(){
+		resetTimer ();
 		if (TextureBtn.Count > maxOffice) {
 			for (int i = 0; i<maxOffice; i++) {
 				if (currentIndex < TextureBtn.Count) {
@@ -2417,6 +2437,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 	const string k_buttonBlockPressTransitionName = "BlockClick";
 
 	public void typeButton(string chara){
+		resetTimer ();
 		StartCoroutine(typeButtonAni (chara));
 	}
 	
@@ -2626,6 +2647,22 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 	bool startPoint = false;
 
 	void create_vessel(Vector3 p1, Vector3 p2, int index) {
+		
+		if (arrow == null) {
+			arrow = GameObject.Find ("arrow");
+			if (arrow == null) {
+				arrow = Instantiate (Resources.Load ("arrow", typeof(GameObject))) as GameObject;
+				arrow.name = "arrow";
+			}
+		}
+		
+		if (Cylinder == null) {
+			Cylinder = GameObject.Find ("lineorginal");
+			if (Cylinder == null) {
+				Cylinder = Instantiate (Resources.Load ("lineorginal", typeof(GameObject))) as GameObject;
+				Cylinder.name = "lineorginal";
+			}
+		}
 
 		float d = Vector3.Distance (p1, p2);
 		Vector3 v = p2 - p1;
@@ -2635,7 +2672,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 			Vector3 start = p1 + ((i * distance - deltad) / d) * v;
 
 			GameObject ar = GameObject.Instantiate (arrow)as GameObject;
-			ar.name = "arrowsssss";
+			ar.name = "ball";
 			arrow scri = ar.GetComponent<arrow> ();
 			scri.beginMove (listpoint, start, index);
 			if(startPoint){
@@ -2816,7 +2853,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 		indexOffice++;
 	}
 
-	bool humanPress = true;
+	bool humanPress = false;
 
 	void Update () {
 
@@ -2825,9 +2862,15 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 			Debug.Log ("stop");
 
 		} else {
-			/*
-			if (leftpress || Input.GetKey (KeyCode.A)) {
-				arroundLeft ();
+
+			if (leftpress || Input.GetMouseButtonDown(0)) {
+				//arroundLeft ();
+				Debug.Log("reset!!");
+				if(isShowFullScreen){
+					changeStatusScreen = true;
+					isShowFullScreen = false;
+					fullScreenTimer.Stop();
+				}else resetTimer();
 			} else if (rightpress || Input.GetKey (KeyCode.D)) {
 				arroundRight ();
 			} else if (uppress || Input.GetKey(KeyCode.W)) {
@@ -2835,7 +2878,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 			} else if (downpress || Input.GetKey(KeyCode.S)) {
 				arroundDown ();
 			}
-*/
+
 		//if (!stillanimation) 
 			{
 				if (Input.touchCount > 0) {
@@ -2991,6 +3034,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 			}
 
 			if (changeStatusScreen) {
+				ClosePress();
 				changeStatusScreen = false;
 				GameObject.Find ("RawImageCrs").GetComponent<Animator> ().SetBool (m_FullScreenParameterId, isShowFullScreen);		
 				if(isShowFullScreen){
