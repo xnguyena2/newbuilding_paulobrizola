@@ -101,11 +101,11 @@ public class arrow : MonoBehaviour {
 				GameObject arrowss = GameObject.Find("arrow");
 				isend = false;
 				GameObject ar = GameObject.Instantiate (arrowss) as GameObject;
-				ar.name = "arrowsssss";
+				ar.name = "ball";
 				arrow scri = ar.GetComponent<arrow> ();
 				scri.beginMove (listPoint);
 				scri.thisIsStartPoint();
-				Destroy(arrowss,60000);
+				//Destroy(arrowss,60000);
 			}
 		}
 	}
