@@ -38,7 +38,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 
 	public Material yellowTarget;
 
-	public GameObject cube;
+	//public GameObject cube;
 
 	public Image floorSelector;
 	public Image headerImg;
@@ -751,6 +751,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 	*/
 
 	public void rangeBtnPress(string number){
+		resetTimer ();
 		hideRangeNuber ();
 		StartCoroutine( searchOfficeInRange (number));
 	}
@@ -1089,239 +1090,249 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 	Vector3[] changeStair1,changeStair2,changeStair;
 
 	public void getRoute(string name){
-		int newLengthList2 = 0;
-		bool dontStartTimer = false;
-		havenextcamera = false;
-		havethirdcamera = false;
+		try {
+			int newLengthList2 = 0;
+			bool dontStartTimer = false;
+			havenextcamera = false;
+			havethirdcamera = false;
 
-		Vector3 lkk = Vector3.zero;
+			Vector3 lkk = Vector3.zero;
 
-		nameCameraPostion = name.Replace ("office", null);
-		result = "\nstatic Vector3 "+currentBlock+"_"+currentFloor + name + " = new Vector3 ";
-		//Debug.Log (name);
-		string namefloor = "block" + currentBlock + "_" + currentFloor;
-		//Debug.Log (namefloor);
-		Vector3[] list = null, list2 = new Vector3[0];
-		if (namefloor == "block8_2") {
-
+			nameCameraPostion = name.Replace ("office", null);
+			result = "\nstatic Vector3 " + currentBlock + "_" + currentFloor + name + " = new Vector3 ";
 			//Debug.Log (name);
-			if (isHandicapMode){
-				list = block8_2Infohandicap.dictionary [name];
-				list2 = block8_1Info.dictionary ["evelator"];
-				cameraPostion = block8_1Info.PositnCamera ["evelator"];
-				lkk = block8_1Info.LookatCamera ["evelator"];
+			string namefloor = "block" + currentBlock + "_" + currentFloor;
+			//Debug.Log (namefloor);
+			Vector3[] list = null, list2 = new Vector3[0];
+			if (namefloor == "block8_2") {
+
+				//Debug.Log (name);
+				if (isHandicapMode) {
+					list = block8_2Infohandicap.dictionary [name];
+					list2 = block8_1Info.dictionary ["evelator"];
+					cameraPostion = block8_1Info.PositnCamera ["evelator"];
+					lkk = block8_1Info.LookatCamera ["evelator"];
+				} else {
+					list = block8_2Info.dictionary [name];
+					list2 = block8_1Info.dictionary ["stair"];
+					cameraPostion = block8_1Info.PositnCamera ["stair"];
+					lkk = block8_1Info.LookatCamera ["stair"];
+				}
+
+				listpoint = new Vector3[list.Length + list2.Length];
+
+				orgP = GameObject.Find ("block8_1").transform.position;
+
+				for (int i = 0; i<list2.Length; i++) {
+					listpoint [i] = ratetio * list2 [i] + orgP;
+				}
+
+				orgP = GameObject.Find (namefloor).transform.position;
+
+				posss = block8_2Info.PositnCamera [name];
+				lattt = block8_2Info.LookatCamera [name];
+				havenextcamera = true;
+
+
+			} else if (namefloor == "block8_1") {
+
+				list = block8_1Info.dictionary [name];
+
+				listpoint = new Vector3[list.Length];
+
+				orgP = GameObject.Find (namefloor).transform.position;
+
+				cameraPostion = block8_1Info.PositnCamera [name];
+				//orginalPostion, target);
+
+				lkk = block8_1Info.LookatCamera [name];
+
+			} else if (namefloor == "block8_3") {
+
+				if (isHandicapMode) {
+					list = block8_3Infohandicap.dictionary [name];
+					list2 = block8_1Info.dictionary ["evelator"];
+					cameraPostion = block8_1Info.PositnCamera ["evelator"];
+					lkk = block8_1Info.LookatCamera ["evelator"];
+					newLengthList2 = list2.Length;
+				} else {
+					list = block8_3Info.dictionary [name];
+					list2 = block8_1Info.dictionary ["stair"];
+					cameraPostion = block8_1Info.PositnCamera ["stair"];
+					lkk = block8_1Info.LookatCamera ["stair"];
+					changeStair = block8_2Info.dictionary ["changeStair"];
+					newLengthList2 = list2.Length + changeStair.Length;
+					orgPChange = GameObject.Find ("block8_2transparent").transform.position;
+				}
+
+				thirdCameraPostion = block8_2Info.PositnCamera ["changeStair"];
+				thirdCameraLookat = block8_2Info.LookatCamera ["changeStair"];
+
+
+				listpoint = new Vector3[list.Length + newLengthList2];
+				orgP = GameObject.Find ("block8_1").transform.position;
+				int oldLength = list2.Length;
+			
+				for (int i = 0; i < newLengthList2; i++) {
+					if (i < list2.Length)
+						listpoint [i] = ratetio * list2 [i] + orgP;
+					else
+						listpoint [i] = ratetio * changeStair [i - list2.Length] + orgPChange;
+				}
+			
+				orgP = GameObject.Find (namefloor).transform.position;
+						
+				posss = block8_2Info.PositnCamera [name];
+				lattt = block8_2Info.LookatCamera [name];
+				havenextcamera = true;
+				havethirdcamera = true;
+			} else if (namefloor == "block8_4") {
+
+				if (isHandicapMode) {
+					list = block8_4Infohandicap.dictionary [name];
+					list2 = block8_1Info.dictionary ["evelator"];
+					cameraPostion = block8_1Info.PositnCamera ["evelator"];
+					lkk = block8_1Info.LookatCamera ["evelator"];
+					newLengthList2 = list2.Length;
+				} else {
+					list = block8_4Info.dictionary [name];
+					list2 = block8_1Info.dictionary ["stair"];
+					cameraPostion = block8_1Info.PositnCamera ["stair"];
+					lkk = block8_1Info.LookatCamera ["stair"];
+					changeStair1 = block8_2Info.dictionary ["changeStair"];
+					changeStair2 = block8_3Info.dictionary ["changeStair"];
+					newLengthList2 = list2.Length + changeStair1.Length + changeStair2.Length;
+					orgPChange1 = GameObject.Find ("block8_2transparent").transform.position;
+					orgPChange2 = GameObject.Find ("block8_3transparent").transform.position;
+				}
+						
+				thirdCameraPostion = block8_2Info.PositnCamera ["changeStair"];
+				thirdCameraLookat = block8_2Info.LookatCamera ["changeStair"];
+
+			
+				listpoint = new Vector3[list.Length + newLengthList2];
+				orgP = GameObject.Find ("block8_1").transform.position;
+				int oldLength = list2.Length;
+			
+				for (int i = 0; i < newLengthList2; i++) {
+					if (i < oldLength)
+						listpoint [i] = ratetio * list2 [i] + orgP;
+					else if (i < oldLength + changeStair1.Length)
+						listpoint [i] = ratetio * changeStair1 [i - oldLength] + orgPChange1;
+					else
+						listpoint [i] = ratetio * changeStair2 [i - oldLength - changeStair1.Length] + orgPChange2;
+				}
+			
+				orgP = GameObject.Find (namefloor).transform.position;
+			
+				//if (block8_2Info.LookatCamera.ContainsKey (name)) {
+			
+				posss = block8_2Info.PositnCamera ["office1"];
+				lattt = block8_2Info.LookatCamera ["office1"];
+				havenextcamera = true;
+				havethirdcamera = true;
+			} else if (namefloor == "block8_5") {
+			
+				if (isHandicapMode) {
+					list = block8_5Infohandicap.dictionary [name];
+					list2 = block8_1Info.dictionary ["evelator"];
+					cameraPostion = block8_1Info.PositnCamera ["evelator"];
+					lkk = block8_1Info.LookatCamera ["evelator"];
+					newLengthList2 = list2.Length;
+				} else {
+					list = block8_5Info.dictionary [name];
+					list2 = block8_1Info.dictionary ["stair"];
+					cameraPostion = block8_1Info.PositnCamera ["stair"];
+					lkk = block8_1Info.LookatCamera ["stair"];
+					changeStair1 = block8_2Info.dictionary ["changeStair"];
+					changeStair2 = block8_3Info.dictionary ["changeStair"];
+					newLengthList2 = list2.Length + changeStair1.Length + changeStair2.Length;
+					orgPChange1 = GameObject.Find ("block8_2transparent").transform.position;
+					orgPChange2 = GameObject.Find ("block8_3transparent").transform.position;
+				}
+						
+				thirdCameraPostion = block8_2Info.PositnCamera ["changeStair"];
+				thirdCameraLookat = block8_2Info.LookatCamera ["changeStair"];
+
+			
+				listpoint = new Vector3[list.Length + newLengthList2];
+				orgP = GameObject.Find ("block8_1").transform.position;
+				int oldLength = list2.Length;
+			
+				for (int i = 0; i < newLengthList2; i++) {
+					if (i < oldLength)
+						listpoint [i] = ratetio * list2 [i] + orgP;
+					else if (i < oldLength + changeStair1.Length)
+						listpoint [i] = ratetio * changeStair1 [i - oldLength] + orgPChange1;
+					else
+						listpoint [i] = ratetio * changeStair2 [i - oldLength - changeStair1.Length] + orgPChange2;
+				}
+			
+				orgP = GameObject.Find (namefloor).transform.position;
+			
+				//if (block8_2Info.LookatCamera.ContainsKey (name)) {
+			
+				posss = block8_2Info.PositnCamera ["office1"];
+				lattt = block8_2Info.LookatCamera ["office1"];
+				havenextcamera = true;
+				havethirdcamera = true;
 			}
-			else{
-				list = block8_2Info.dictionary [name];
-				list2 = block8_1Info.dictionary ["stair"];
-				cameraPostion = block8_1Info.PositnCamera ["stair"];
-				lkk = block8_1Info.LookatCamera ["stair"];
+
+
+			if (list2.Length > 0) {
+				showVideoDireciton ();
+				GameObject plane = GameObject.Find ("floor" + namefloor [7] + "_ground");			
+				plane.GetComponent<Renderer> ().material.color = transparentForFloor;
+			} else {			
+				if (!dontStartTimer) {
+					hideInfomationTimer.Stop ();
+					hideInfomationTimer.Start ();
+					//Debug.Log("start time");
+				}
+				//StartCoroutine (LoadVideo (currentOfficeVideoIndex + videoType));
+				StartCoroutine (Wait (loadOfficeVideoByPath));
 			}
-
-			listpoint = new Vector3[list.Length + list2.Length];
-
-			orgP = GameObject.Find ("block8_1").transform.position;
-
-			for (int i = 0; i<list2.Length; i++) {
-				listpoint [i] = ratetio * list2 [i] + orgP;
-			}
-
-			orgP = GameObject.Find (namefloor).transform.position;
-
-			posss = block8_2Info.PositnCamera [name];
-			lattt = block8_2Info.LookatCamera [name];
-			havenextcamera = true;
-
-
-		} else if (namefloor == "block8_1") {
-
-			list = block8_1Info.dictionary [name];
-
-			listpoint = new Vector3[list.Length];
-
-			orgP = GameObject.Find (namefloor).transform.position;
-
-			cameraPostion = block8_1Info.PositnCamera [name];
-			//orginalPostion, target);
-
-			lkk = block8_1Info.LookatCamera [name];
-
-		} else if (namefloor == "block8_3") {
-
-			if (isHandicapMode){
-				list = block8_3Infohandicap.dictionary [name];
-				list2 = block8_1Info.dictionary ["evelator"];
-				cameraPostion = block8_1Info.PositnCamera ["evelator"];
-				lkk = block8_1Info.LookatCamera ["evelator"];
+			if (newLengthList2 == 0)
 				newLengthList2 = list2.Length;
+			for (int i = 0; i<(list.Length); i++) {			
+				listpoint [i + newLengthList2] = ratetio * list [i] + orgP;
 			}
-			else{
-				list = block8_3Info.dictionary [name];
-				list2 = block8_1Info.dictionary ["stair"];
-				cameraPostion = block8_1Info.PositnCamera ["stair"];
-				lkk = block8_1Info.LookatCamera ["stair"];
-				changeStair = block8_2Info.dictionary["changeStair"];
-				newLengthList2 = list2.Length + changeStair.Length;
-				orgPChange = GameObject.Find ("block8_2transparent").transform.position;
+			//startAnimation.transform.position = listpoint [0];
+			printPoint.transform.position = listpoint [listpoint.Length - 1];
+
+			if (!isBathRoomSearch) {
+				endAnimation.transform.position = listpoint [listpoint.Length - 1] - new Vector3 (0, 1.8f, 0);
+			} else {
+				if(endAnimation == null){
+					endAnimation = GameObject.Find ("containAnimation");
+					if(endAnimation == null){
+						endAnimation = Instantiate(Resources.Load("containAnimation", typeof(GameObject))) as GameObject;
+						endAnimation.name = "containAnimation";
+					}
+				}
+				GameObject endpathroom = GameObject.Instantiate (endAnimation)as GameObject;
+				endpathroom.name = "endpathroom";
+				endpathroom.transform.position = listpoint [listpoint.Length - 1] - new Vector3 (0, 1.8f, 0);
 			}
 
-			thirdCameraPostion = block8_2Info.PositnCamera["changeStair"];
-			thirdCameraLookat = block8_2Info.LookatCamera["changeStair"];
-
-
-			listpoint = new Vector3[list.Length + newLengthList2];
-			orgP = GameObject.Find ("block8_1").transform.position;
-			int oldLength = list2.Length;
-			
-			for (int i = 0; i < newLengthList2; i++) {
-				if(i<list2.Length)
-					listpoint [i] = ratetio * list2 [i] + orgP;
-				else listpoint [i] = ratetio * changeStair [i - list2.Length] + orgPChange;
+			Vector3 start = listpoint [0]; 
+			startPoint = true;
+			for (int i=1; i<listpoint.Length; i++) {
+				create_vessel (start, listpoint [i], i);
+				start = listpoint [i];
 			}
-			
-			orgP = GameObject.Find (namefloor).transform.position;
-						
-			posss = block8_2Info.PositnCamera [name];
-			lattt = block8_2Info.LookatCamera [name];
-			havenextcamera = true;
-			havethirdcamera = true;
-		} else if (namefloor == "block8_4") {
 
-			if (isHandicapMode){
-				list = block8_4Infohandicap.dictionary [name];
-				list2 = block8_1Info.dictionary ["evelator"];
-				cameraPostion = block8_1Info.PositnCamera ["evelator"];
-				lkk = block8_1Info.LookatCamera ["evelator"];
-				newLengthList2 = list2.Length ;
+			if (isBathRoomSearch && name == "office77") {
+				cameraPostion = block8_1Info.PositnCamera ["posbathroom"];
+				lkk = block8_1Info.LookatCamera ["lookatbathroom"];
+				isBathRoomSearch = false;
 			}
-			else{
-				list = block8_4Info.dictionary [name];
-				list2 = block8_1Info.dictionary ["stair"];
-				cameraPostion = block8_1Info.PositnCamera ["stair"];
-				lkk = block8_1Info.LookatCamera ["stair"];
-				changeStair1 = block8_2Info.dictionary["changeStair"];
-				changeStair2 = block8_3Info.dictionary["changeStair"];
-				newLengthList2 = list2.Length + changeStair1.Length + changeStair2.Length;
-				orgPChange1 = GameObject.Find ("block8_2transparent").transform.position;
-				orgPChange2 = GameObject.Find ("block8_3transparent").transform.position;
+			if (!(isBathRoomSearch && (name == "office76"))) {
+				setCamera (cameraPostion, lkk);
 			}
-						
-			thirdCameraPostion = block8_2Info.PositnCamera["changeStair"];
-			thirdCameraLookat = block8_2Info.LookatCamera["changeStair"];
-
-			
-			listpoint = new Vector3[list.Length + newLengthList2];
-			orgP = GameObject.Find ("block8_1").transform.position;
-			int oldLength = list2.Length;
-			
-			for (int i = 0; i < newLengthList2; i++) {
-				if(i<oldLength)
-					listpoint [i] = ratetio * list2 [i] + orgP;
-				else if(i<oldLength+changeStair1.Length)
-					listpoint [i] = ratetio * changeStair1 [i - oldLength] + orgPChange1;
-				else listpoint [i] = ratetio * changeStair2 [i - oldLength - changeStair1.Length] + orgPChange2;
-			}
-			
-			orgP = GameObject.Find (namefloor).transform.position;
-			
-			//if (block8_2Info.LookatCamera.ContainsKey (name)) {
-			
-			posss = block8_2Info.PositnCamera ["office1"];
-			lattt = block8_2Info.LookatCamera ["office1"];
-			havenextcamera = true;
-			havethirdcamera = true;
-		} else if (namefloor == "block8_5") {
-			
-			if (isHandicapMode){
-				list = block8_5Infohandicap.dictionary [name];
-				list2 = block8_1Info.dictionary ["evelator"];
-				cameraPostion = block8_1Info.PositnCamera ["evelator"];
-				lkk = block8_1Info.LookatCamera ["evelator"];
-				newLengthList2 = list2.Length;
-			}
-			else{
-				list = block8_5Info.dictionary [name];
-				list2 = block8_1Info.dictionary ["stair"];
-				cameraPostion = block8_1Info.PositnCamera ["stair"];
-				lkk = block8_1Info.LookatCamera ["stair"];
-				changeStair1 = block8_2Info.dictionary["changeStair"];
-				changeStair2 = block8_3Info.dictionary["changeStair"];
-				newLengthList2 = list2.Length + changeStair1.Length + changeStair2.Length;
-				orgPChange1 = GameObject.Find ("block8_2transparent").transform.position;
-				orgPChange2 = GameObject.Find ("block8_3transparent").transform.position;
-			}
-						
-			thirdCameraPostion = block8_2Info.PositnCamera["changeStair"];
-			thirdCameraLookat = block8_2Info.LookatCamera["changeStair"];
-
-			
-			listpoint = new Vector3[list.Length + newLengthList2];
-			orgP = GameObject.Find ("block8_1").transform.position;
-			int oldLength = list2.Length;
-			
-			for (int i = 0; i < newLengthList2; i++) {
-				if(i<oldLength)
-					listpoint [i] = ratetio * list2 [i] + orgP;
-				else if(i<oldLength+changeStair1.Length)
-					listpoint [i] = ratetio * changeStair1 [i - oldLength] + orgPChange1;
-				else listpoint [i] = ratetio * changeStair2 [i - oldLength - changeStair1.Length] + orgPChange2;
-			}
-			
-			orgP = GameObject.Find (namefloor).transform.position;
-			
-			//if (block8_2Info.LookatCamera.ContainsKey (name)) {
-			
-			posss = block8_2Info.PositnCamera ["office1"];
-			lattt = block8_2Info.LookatCamera ["office1"];
-			havenextcamera = true;
-			havethirdcamera = true;
-		}
-
-
-		if (list2.Length > 0) {
-			showVideoDireciton ();
-			GameObject plane = GameObject.Find ("floor"+namefloor[7]+"_ground");			
-			plane.GetComponent<Renderer>().material.color = transparentForFloor;
-		} else {			
-			if(!dontStartTimer){
-				hideInfomationTimer.Stop();
-				hideInfomationTimer.Start();
-				//Debug.Log("start time");
-			}
-			//StartCoroutine (LoadVideo (currentOfficeVideoIndex + videoType));
-			StartCoroutine(Wait(loadOfficeVideoByPath));
-		}
-		if (newLengthList2 == 0)
-			newLengthList2 = list2.Length;
-		for (int i = 0; i<(list.Length); i++) {			
-			listpoint [i+newLengthList2] = ratetio*list [i] + orgP;
-		}
-		//startAnimation.transform.position = listpoint [0];
-		printPoint.transform.position = listpoint [listpoint.Length - 1];
-
-		if (!isBathRoomSearch) {
-			endAnimation.transform.position = listpoint [listpoint.Length - 1] - new Vector3(0,1.8f,0);
-		}
-		else {
-			GameObject endpathroom = GameObject.Instantiate (endAnimation)as GameObject;
-			endpathroom.name = "endpathroom";
-			endpathroom.transform.position = listpoint [listpoint.Length - 1] - new Vector3(0,1.8f,0);
-		}
-
-		Vector3 start =listpoint [0]; 
-		startPoint = true;
-		for (int i=1; i<listpoint.Length; i++) {
-			create_vessel (start, listpoint [i], i);
-			start = listpoint [i];
-		}
-
-		if (isBathRoomSearch && name == "office77") {
-			cameraPostion = block8_1Info.PositnCamera["posbathroom"];
-			lkk = block8_1Info.LookatCamera["lookatbathroom"];
-			isBathRoomSearch = false;
-		}
-		if (!(isBathRoomSearch && (name == "office76"))) {
-			setCamera (cameraPostion, lkk);
+		} catch (System.Exception e) {
+			Debug.Log ("\nofficeName:" + name + ", " + e.ToString ());
+			writetofile.append2File (buginfo, "\nofficeName:" + name + ", " + e.ToString ());
 		}
 	}
 
@@ -1416,6 +1427,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
     string nameOfSearchBlock,routeBettwenBlock;
 
 	public void officeClickEvent(Button name){
+		resetTimer ();
 		StartCoroutine (officeClick (name));
 	}
 	
@@ -1429,7 +1441,9 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 
 		if (name != null) {
 			blcName = name.image.sprite.name;
-			officeIndex = blcName.Split(new string[]{"+"},System.StringSplitOptions.None)[0];
+			//Debug.Log(blcName);
+			officeIndex = blcName;//.Split(new string[]{"+"},System.StringSplitOptions.None)[0];
+			//Debug.Log(officeIndex);
 
 			//Debug.Log(blcName);
 			
@@ -1514,7 +1528,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 		foreach (var gameObj in FindObjectsOfType(typeof(GameObject)) as GameObject[])
 		{
 			string nameobj = gameObj.name;
-			if(nameobj == "lineDirection" || nameobj == "arrowsssss" || nameobj == "endpathroom")
+			if(nameobj == "lineDirection" || nameobj == "ball" || nameobj == "endpathroom")
 			{
 				Destroy(gameObj);
 			}
@@ -2002,10 +2016,12 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 	}
 
 	public void nextSegment(){
+		resetTimer ();
 		StartCoroutine (nextSgm ());
 	}
 
 	public void previosSegment(){
+		resetTimer ();
 		StartCoroutine (previSgm ());
 	}
 	
@@ -2130,6 +2146,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 	}
 
 	public void nextEvent(){
+		resetTimer ();
 		if (eventId.Count > maxEvent) {
 			for (int i = 1; i <= maxEvent; i++) {
 				if (currentEvent < eventId.Count) {
@@ -2182,6 +2199,9 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 	
 	public void nextCinema(){
 		//Debug.Log (cinemaId.Count);
+		resetTimer ();
+		closeTimer.Stop ();
+		closeTimer.Start ();
 		if (cinemaId.Count > maxCinema) {
 			//Debug.Log("currentCinema:"+currentCinema);
 			for (int i = 1; i <= maxCinema; i++) {
@@ -2228,6 +2248,9 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 	
 	public void nextTheater(){
 		//Debug.Log (cinemaId.Count);
+		resetTimer ();
+		closeTimer.Stop ();
+		closeTimer.Start ();
 		if (theaterId.Count > maxTheater) {
 			//Debug.Log("currentCinema:"+currentCinema);
 			for (int i = 1; i <= maxTheater; i++) {
@@ -2271,6 +2294,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 	}
 
 	public void searchOfficeBySegment(int index){
+		resetTimer ();
 		string segement,nameOfContainPanel = "Panelcontainsegments";
 		segement = segmentNameArray [index + offset];
 		Debug.Log (offset + "," + segement);
@@ -2334,6 +2358,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 	}
 	
 	public void next(){
+		resetTimer ();
 		if (TextureBtn.Count > maxOffice) {
 			for (int i = 0; i<maxOffice; i++) {
 				if (currentIndex < TextureBtn.Count) {
@@ -2402,6 +2427,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 	const string k_buttonBlockPressTransitionName = "BlockClick";
 
 	public void typeButton(string chara){
+		resetTimer ();
 		StartCoroutine(typeButtonAni (chara));
 	}
 	
@@ -2596,6 +2622,22 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 	bool startPoint = false;
 
 	void create_vessel(Vector3 p1, Vector3 p2, int index) {
+		
+		if (arrow == null) {
+			arrow = GameObject.Find ("arrow");
+			if (arrow == null) {
+				arrow = Instantiate (Resources.Load ("arrow", typeof(GameObject))) as GameObject;
+				arrow.name = "arrow";
+			}
+		}
+		
+		if (Cylinder == null) {
+			Cylinder = GameObject.Find ("lineorginal");
+			if (Cylinder == null) {
+				Cylinder = Instantiate (Resources.Load ("lineorginal", typeof(GameObject))) as GameObject;
+				Cylinder.name = "lineorginal";
+			}
+		}
 
 		float d = Vector3.Distance (p1, p2);
 		Vector3 v = p2 - p1;
@@ -2605,7 +2647,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 			Vector3 start = p1 + ((i * distance - deltad) / d) * v;
 
 			GameObject ar = GameObject.Instantiate (arrow)as GameObject;
-			ar.name = "arrowsssss";
+			ar.name = "ball";
 			arrow scri = ar.GetComponent<arrow> ();
 			scri.beginMove (listpoint, start, index);
 			if(startPoint){
@@ -2758,6 +2800,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 		yield return null;
 	}
 
+	string buginfo = "building_Data\\data\\bug.txt";
 	string cameraangle = "building_Data\\data\\camereangle.txt";
 	string pointPostions = "building_Data\\data\\points.txt";
 	string officePostion = "building_Data\\data\\officePostion.txt";
@@ -2786,7 +2829,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 		indexOffice++;
 	}
 
-	bool humanPress = true;
+	bool humanPress = false;
 
 	void Update () {
 
@@ -2795,9 +2838,12 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 			Debug.Log ("stop");
 
 		} else {
-			/*
-			if (leftpress || Input.GetKey (KeyCode.A)) {
-				arroundLeft ();
+
+			if (leftpress //|| Input.GetKey (KeyCode.A)
+			    || Input.GetMouseButtonDown(0)
+			    ) {
+				//arroundLeft ();
+				Debug.Log ("reset!!");
 				if(isShowFullScreen){
 					changeStatusScreen = true;
 					isShowFullScreen = false;
@@ -2810,7 +2856,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 			} else if (downpress || Input.GetKey(KeyCode.S)) {
 				arroundDown ();
 			}
-			*/
+
 		//if (!stillanimation) 
 			{
 				if (Input.touchCount > 0) {
@@ -2968,6 +3014,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 			}
 
 			if (changeStatusScreen) {
+				ClosePress();
 				changeStatusScreen = false;
 				GameObject.Find ("RawImageCrs").GetComponent<Animator> ().SetBool (m_FullScreenParameterId, isShowFullScreen);		
 				if(isShowFullScreen){

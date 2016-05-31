@@ -1,0 +1,16 @@
+
+officeName:office300System.Collections.Generic.KeyNotFoundException: The given key was not present in the dictionary.
+  at System.Collections.Generic.Dictionary`2[System.String,UnityEngine.Vector3[]].get_Item (System.String key) [0x000a2] in /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Collections.Generic/Dictionary.cs:150 
+  at ControlEvent.getRoute (System.String name) [0x00269] in C:\Users\Nguyen Phong\Downloads\unity\newbuilding_32\newbuilding_32\Assets\script\ControlEvent.cs:1138 
+officeName:office231, System.Collections.Generic.KeyNotFoundException: The given key was not present in the dictionary.
+  at System.Collections.Generic.Dictionary`2[System.String,UnityEngine.Vector3[]].get_Item (System.String key) [0x000a2] in /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Collections.Generic/Dictionary.cs:150 
+  at ControlEvent.getRoute (System.String name) [0x00269] in C:\Users\Nguyen Phong\Downloads\unity\newbuilding_32\newbuilding_32\Assets\script\ControlEvent.cs:1138 
+officeName:office231, System.Collections.Generic.KeyNotFoundException: The given key was not present in the dictionary.
+  at System.Collections.Generic.Dictionary`2[System.String,UnityEngine.Vector3[]].get_Item (System.String key) [0x000a2] in /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Collections.Generic/Dictionary.cs:150 
+  at ControlEvent.getRoute (System.String name) [0x00269] in C:\Users\Nguyen Phong\Downloads\unity\newbuilding_32\newbuilding_32\Assets\script\ControlEvent.cs:1138 
+officeName:office64., System.Collections.Generic.KeyNotFoundException: The given key was not present in the dictionary.
+  at System.Collections.Generic.Dictionary`2[System.String,UnityEngine.Vector3[]].get_Item (System.String key) [0x000a2] in /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Collections.Generic/Dictionary.cs:150 
+  at ControlEvent.getRoute (System.String name) [0x00269] in C:\Users\Nguyen Phong\Downloads\unity\newbuilding_32\newbuilding_32\Assets\script\ControlEvent.cs:1138 
+officeName:office64., System.Collections.Generic.KeyNotFoundException: The given key was not present in the dictionary.
+  at System.Collections.Generic.Dictionary`2[System.String,UnityEngine.Vector3[]].get_Item (System.String key) [0x000a2] in /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Collections.Generic/Dictionary.cs:150 
+  at ControlEvent.getRoute (System.String name) [0x00269] in C:\Users\Nguyen Phong\Downloads\unity\newbuilding_32\newbuilding_32\Assets\script\ControlEvent.cs:1138 
