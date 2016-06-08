@@ -263,10 +263,25 @@ public class Point8_2handicap
 	static Vector3[] office76 = new Vector3[] { evalator, p15, p9, f76, o76 };
 	static Vector3[] office77 = new Vector3[] { evalator, p15, p9, f77, o77 };
 	static Vector3[] office78 = new Vector3[] { evalator, p15, p9, f78, o78 };
-	static Vector3[] office79 = new Vector3[] { evalator, p15, p8, p2, p14, f79, o79 };
+	static Vector3[] office79 = new Vector3[] { evalator, p15, p8, p2, p14, f79, o79 };	
 	
+	static Vector3[] start1 = new Vector3[] { evalator, p15, p8, p1};
+	static Vector3[] start2 = new Vector3[] { evalator, p15, p8, p2};
+	static Vector3[] start3 = new Vector3[] { evalator, p15, p8, p3};
+	static Vector3[] start4 = new Vector3[] { evalator, p15, p5, p4};
+	static Vector3[] start5 = new Vector3[] { evalator, p15, p5};
+	static Vector3[] start6 = new Vector3[] { evalator, p15, p8, p2, p6};
+	static Vector3[] start7 = new Vector3[] { evalator, p15, p8, p2, p7};
+	static Vector3[] start8 = new Vector3[] { evalator, p15, p8};
+	static Vector3[] start9 = new Vector3[] { evalator, p15, p9};
+	static Vector3[] start10 = new Vector3[] { evalator, p15, p10};
+	static Vector3[] start11 = new Vector3[] { evalator, p15, p11};
+	static Vector3[] start12 = new Vector3[] { evalator, p15, p12};
+	static Vector3[] start13 = new Vector3[] { evalator, p15, p13};
+	static Vector3[] start14 = new Vector3[] { evalator, p15, p8, p2, p14};
 	
 	public Dictionary<string, Vector3[]> dictionary = new Dictionary<string, Vector3[]>();
+	public Dictionary<string, Vector3[]> dicStart = new Dictionary<string, Vector3[]>();
 	
 	
 	public Point8_2handicap()
@@ -351,5 +366,35 @@ public class Point8_2handicap
 		dictionary.Add("office78",office78);
 		dictionary.Add("office79",office79);
 		
+		dicStart.Add ("start1", start1);
+		dicStart.Add ("start2", start2);
+		dicStart.Add ("start3", start3);
+		dicStart.Add ("start4", start4);
+		dicStart.Add ("start5", start5);
+		dicStart.Add ("start6", start6);
+		dicStart.Add ("start7", start7);
+		dicStart.Add ("start8", start8);
+		dicStart.Add ("start9", start9);
+		dicStart.Add ("start10", start10);
+		dicStart.Add ("start11", start11);
+		dicStart.Add ("start12", start12);
+		dicStart.Add ("start13", start13);
+		dicStart.Add ("start14", start14);
+		
+	}
+	public void addNewOffice(string name, string nameStart, Vector3[] append,string camera)
+	{
+		Vector3[] start = dicStart [nameStart];
+		int length = start.Length + append.Length;
+		Vector3[] arrayVectorOffice = new Vector3[length];
+		for (int i = 0; i< length; i++) {
+			if(i<start.Length){
+				arrayVectorOffice[i] = start[i];
+			}
+			else {
+				arrayVectorOffice[i] = append[i - start.Length];
+			}
+		}
+		dictionary.Add (name, arrayVectorOffice);
 	}
 }

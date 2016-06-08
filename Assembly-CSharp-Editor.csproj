@@ -6,7 +6,7 @@
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
 	<RootNamespace></RootNamespace>
-	<ProjectGuid>{1F7C311D-1B18-4D47-BDB1-298F7D8CCB1E}</ProjectGuid>
+	<ProjectGuid>{4148AAE0-F3C4-D590-B4DA-F5E71FBE84E8}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -60,9 +60,6 @@
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Advanced.shader" />
      <None Include="Assets\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
      <None Include="Assets\AVProWindowsMedia\Resources\YUV_YVYU2RGBA .shader" />
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>E:/Program Files/Unity32/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>E:/Program Files/Unity32/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
  </Reference>
@@ -77,9 +74,6 @@
  </Reference>
  <Reference Include="UnityEditor.Networking">
  <HintPath>E:/Program Files/Unity32/Unity/Editor/Data/UnityExtensions/Unity/Networking/Editor/UnityEditor.Networking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Analytics">
- <HintPath>E:/Program Files/Unity32/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>E:/Program Files/Unity32/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
@@ -123,9 +117,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{A7191334-9ABF-1E2D-E294-EE8525ED5EF7}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{F1A151E4-28C6-FCF6-51E5-58431174BBB6}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{8FCB8E75-73E6-DBB3-2635-F6BFA00CDB59}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+      <Project>{4AA8043E-3FA0-D6E0-18E9-983F3CFA2AF5}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -575,6 +575,8 @@ namespace AssemblyCSharp
 				}
 			}
 			dictionary.Add (name, arrayVectorOffice);
+			PositnCamera.Add(name, PositnCamera[camera]);
+			LookatCamera.Add(name,LookatCamera[camera]);
 		}
 
 	}

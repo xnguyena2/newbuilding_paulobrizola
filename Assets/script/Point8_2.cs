@@ -316,20 +316,20 @@ public class Point8_2
 	static Vector3 lookatevelatorup = new Vector3 (292.7f, 11.7f, 205.0f);
 
 
-	static Vector3[] start1 = new Vector3[] { start, p1};
-	static Vector3[] start2 = new Vector3[] { start, p1, p2};
-	static Vector3[] start3 = new Vector3[] { start, p1, p3};
-	static Vector3[] start4 = new Vector3[] { start, p1, p3, p4};
-	static Vector3[] start5 = new Vector3[] { start, p13, p5};
-	static Vector3[] start6 = new Vector3[] { start, p1, p2, p6};
-	static Vector3[] start7 = new Vector3[] { start, p1, p2, p7};
-	static Vector3[] start8 = new Vector3[] { start, p13, start};
-	static Vector3[] start9 = new Vector3[] { start, p13, p9};
-	static Vector3[] start10 = new Vector3[] { start, p13, p10};
-	static Vector3[] start11 = new Vector3[] { start, p13, p11};
-	static Vector3[] start12 = new Vector3[] { start, p13, p12};
-	static Vector3[] start13 = new Vector3[] { start, p13};
-	static Vector3[] start14 = new Vector3[] { start, p1, p2, p14};
+	static Vector3[] start1 = new Vector3[] { upStair, p5, start, p1};
+	static Vector3[] start2 = new Vector3[] { upStair, p5, start, p2};
+	static Vector3[] start3 = new Vector3[] { upStair, p4, p3};
+	static Vector3[] start4 = new Vector3[] { upStair, p4};
+	static Vector3[] start5 = new Vector3[] { upStair, p5};
+	static Vector3[] start6 = new Vector3[] { upStair, p4, p3, p2, p6};
+	static Vector3[] start7 = new Vector3[] { upStair, p4, p3, p2, p7};
+	static Vector3[] start8 = new Vector3[] { upStair, p5, start};
+	static Vector3[] start9 = new Vector3[] { upStair, p5, p9};
+	static Vector3[] start10 = new Vector3[] { upStair, p5, p10};
+	static Vector3[] start11 = new Vector3[] { upStair, p5, p11};
+	static Vector3[] start12 = new Vector3[] { upStair, p5, p12};
+	static Vector3[] start13 = new Vector3[] { upStair, p5, p13};
+	static Vector3[] start14 = new Vector3[] { upStair, p5, start, p2, p14};
 
 	public Dictionary<string, Vector3[]> dictionary = new Dictionary<string, Vector3[]>();
 	

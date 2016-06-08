@@ -277,19 +277,19 @@ namespace AssemblyCSharp
 		static Vector3[] office77 = new Vector3[] { begin77, f77, of77 };
 		static Vector3[] gotoEvelator = new Vector3[] { start, p14, evelator };
 
-		static Vector3[] start1 = new Vector3[] { start, p1};
-		static Vector3[] start2 = new Vector3[] { start, p1, p2};
-		static Vector3[] start3 = new Vector3[] { start, p1, p4, p3};
-		static Vector3[] start4 = new Vector3[] { start, p4};
-		static Vector3[] start5 = new Vector3[] { start, p5 };
-		static Vector3[] start6 = new Vector3[] { start, p5, p6};
-		static Vector3[] start7 = new Vector3[] { start, p7 };
-		static Vector3[] start8 = new Vector3[] { start, p5, p6, p8 };
-		static Vector3[] start9 = new Vector3[] { start, p1, p9 };
-		static Vector3[] start10 = new Vector3[] { start, p1, p9, p10 };
-		static Vector3[] start11 = new Vector3[] { start, p1, p9, p10, p11 };
-		static Vector3[] start12 = new Vector3[] { start, p1, p9, p10, p11, p12 };
-		static Vector3[] start13 = new Vector3[] { start, p13};
+		static Vector3[] start1 = new Vector3[] { stair, p1};
+		static Vector3[] start2 = new Vector3[] { stair, p9, p2};
+		static Vector3[] start3 = new Vector3[] { stair, p9, p2, p3};
+		static Vector3[] start4 = new Vector3[] { stair, p1, p4};
+		static Vector3[] start5 = new Vector3[] { stair, p1, p5 };
+		static Vector3[] start6 = new Vector3[] { stair, p1, p5, p6};
+		static Vector3[] start7 = new Vector3[] { stair, p1, p7 };
+		static Vector3[] start8 = new Vector3[] { stair, p1, p7, p8 };
+		static Vector3[] start9 = new Vector3[] { stair, p9 };
+		static Vector3[] start10 = new Vector3[] { stair, p9, p10 };
+		static Vector3[] start11 = new Vector3[] { stair, p9, p10, p11 };
+		static Vector3[] start12 = new Vector3[] { stair, p9, p10, p11, p12 };
+		//static Vector3[] start13 = new Vector3[] { stair, p13};
 
 		static Vector3[] stairRoute = new Vector3[] { start, p13, stair };
 
@@ -594,7 +594,7 @@ namespace AssemblyCSharp
 			dicStart.Add ("start10", start10);
 			dicStart.Add ("start11", start11);
 			dicStart.Add ("start12", start12);
-			dicStart.Add ("start13", start13);
+			//dicStart.Add ("start13", start13);
 		}
 
 		public void addNewOffice(string name, string nameStart, Vector3[] append,string camera)
