@@ -303,7 +303,7 @@ namespace AssemblyCSharp
 		static Vector3[] start6 = new Vector3[] { stair, p2, p6};
 		static Vector3[] start7 = new Vector3[] { stair, p2, p5, p7};
 		static Vector3[] start8 = new Vector3[] { stair, p2, p5, p8};
-		static Vector3[] start9 = new Vector3[] { stair, p2, p5, p9};
+		static Vector3[] start9 = new Vector3[] { stair, p1, p9};
 
 		public Dictionary<string,Vector3> LookatCamera = new Dictionary<string, Vector3> ();
 		
@@ -557,6 +557,8 @@ namespace AssemblyCSharp
 				}
 			}
 			dictionary.Add (name, arrayVectorOffice);
+			PositnCamera.Add(name, PositnCamera[camera]);
+			LookatCamera.Add(name,LookatCamera[camera]);
 		}
 
 	}
