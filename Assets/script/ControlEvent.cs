@@ -1062,14 +1062,21 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 					for(int i = 1;i<routeInfo.Length;i++){
 						routeAppend[i-1] = dicPoint["b"+block+floor+routeInfo[i]];
 					}
-					if(floor == "1")
+					if(floor == "1"){
 						block8_1Info.addNewOffice("office"+nameOffice,routeInfo[0],routeAppend,"office"+officeA[2]);
-					else if(floor == "2")
+					}
+					else if(floor == "2"){
 						block8_2Info.addNewOffice("office"+nameOffice,routeInfo[0],routeAppend,"office"+officeA[2]);
-					else if(floor == "3")
+						block8_2Infohandicap.addNewOffice("office"+nameOffice,routeInfo[0],routeAppend,"office"+officeA[2]);
+					}
+					else if(floor == "3"){
 						block8_3Info.addNewOffice("office"+nameOffice,routeInfo[0],routeAppend,"office"+officeA[2]);
-					else if(floor == "4")
-						block8_4Info.addNewOffice("office"+nameOffice,routeInfo[0],routeAppend,"office"+officeA[2]);
+						block8_3Infohandicap.addNewOffice("office"+nameOffice,routeInfo[0],routeAppend,"office"+officeA[2]);
+					}
+					else if(floor == "4"){
+						//block8_4Info.addNewOffice("office"+nameOffice,routeInfo[0],routeAppend,"office"+officeA[2]);
+						//block8_4Infohandicap.addNewOffice("office"+nameOffice,routeInfo[0],routeAppend,"office"+officeA[2]);
+					}
 				}
 			}
 		}

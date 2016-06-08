@@ -266,7 +266,18 @@ namespace AssemblyCSharp
 		static Vector3[] office71 = new Vector3[] { evelator, p11, p6, f71, o71 };
 		
 		
+		static Vector3[] start1 = new Vector3[] { evelator, p11, p2, p1};
+		static Vector3[] start2 = new Vector3[] { evelator, p11, p2};
+		static Vector3[] start3 = new Vector3[] { evelator, p11, p3};
+		static Vector3[] start4 = new Vector3[] { evelator, p11, p4};
+		static Vector3[] start5 = new Vector3[] { evelator, p11, p5};
+		static Vector3[] start6 = new Vector3[] { evelator, p11, p6};
+		static Vector3[] start7 = new Vector3[] { evelator, p11, p5, p7};
+		static Vector3[] start8 = new Vector3[] { evelator, p11, p5, p7, p8};
+		static Vector3[] start9 = new Vector3[] { evelator, p11, p5, p9};
+		
 		public Dictionary<string, Vector3[]> dictionary = new Dictionary<string, Vector3[]>();
+		public Dictionary<string, Vector3[]> dicStart = new Dictionary<string, Vector3[]>();
 		
 		public Point8_3handicap ()
 		{						
@@ -341,6 +352,32 @@ namespace AssemblyCSharp
 			dictionary.Add("office69",office69);
 			dictionary.Add("office70",office70);
 			dictionary.Add("office71",office71);
+
+			dicStart.Add ("start1", start1);
+			dicStart.Add ("start2", start2);
+			dicStart.Add ("start3", start3);
+			dicStart.Add ("start4", start4);
+			dicStart.Add ("start5", start5);
+			dicStart.Add ("start6", start6);
+			dicStart.Add ("start7", start7);
+			dicStart.Add ("start8", start8);
+			dicStart.Add ("start9", start9);
+		}
+		
+		public void addNewOffice(string name, string nameStart, Vector3[] append,string camera)
+		{
+			Vector3[] start = dicStart [nameStart];
+			int length = start.Length + append.Length;
+			Vector3[] arrayVectorOffice = new Vector3[length];
+			for (int i = 0; i< length; i++) {
+				if(i<start.Length){
+					arrayVectorOffice[i] = start[i];
+				}
+				else {
+					arrayVectorOffice[i] = append[i - start.Length];
+				}
+			}
+			dictionary.Add (name, arrayVectorOffice);
 		}
 	}
 }
