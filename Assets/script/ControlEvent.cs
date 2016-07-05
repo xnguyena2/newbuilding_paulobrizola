@@ -1020,11 +1020,14 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 			string x = infomationForSearch [i];
 			if (x != "") {
 				temp = "";
-				string name = convertToUtf8(x.Split (new string[]{" "}, System.StringSplitOptions.None) [1].ToLower ());
+				string[] info = x.Split(new string[]{" "},System.StringSplitOptions.None);
+				string name =  convertToUtf8(toNormalString(info[1])).ToLower();
+				
 				foreach (char ch in name) {
-					temp += getChar (ch);
+					if(ch != '.' && ch != '\'')
+						temp += getChar (ch);
 				}
-				infomationOfName [i] = toNormalString(temp);
+				infomationOfName [i] = temp;
 			}
 		}
 		Debug.Log ("finished!!!!" + infomationOfName.Length);
@@ -1694,16 +1697,18 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 	}
 	
 	private char getChar(char c){
-		if("a ă á ắ ấ à ằ ầ ặ â ậ A Ă Á Ắ Ấ Â À Ằ Ầ Ặ Ậ".IndexOf(c)>=0)
+		if("a ã ă á ắ ấ à ằ ầ ặ â ậ A Ă Á Ắ Ấ Â À Ằ Ầ Ặ Ậ".IndexOf(c)>=0)
 			return 'a';
 		else if("e é ế è ề ê ẹ ệ E É Ê Ế È Ề Ẹ &".IndexOf(c)>=0)
 			return 'e';
 		else if("i í ì ị I Í Ì Ị".IndexOf(c)>=0)
 			return 'i';
-		else if("o ò ồ ố ô ó ọ ộ O Ò Ồ Ố Ô Ó Ọ Ộ".IndexOf(c)>=0)
+		else if("o õ ò ồ ố ô ó ọ ộ O Ò Ồ Ố Ô Ó Ọ Ộ".IndexOf(c)>=0)
 			return 'o';
 		else if("u ú ù ụ U Ú Ù Ụ".IndexOf(c)>=0)
 			return 'u';
+		else if('ç' == c)
+			return 'c';
 		else return c;
 		
 	}

@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\geava_2\Assets\script\ControlEvent.cs">
+    <Files>
+      <File FileName="Assets\script\ControlEvent.cs" Line="1028" Column="22" />
+      <File FileName="..\citta_1\Assets\script\ControlEvent.cs" Line="2525" Column="2" />
+      <File FileName="..\geava_2\Assets\script\ControlEvent.cs" Line="1710" Column="22" />
+      <File FileName="..\geava_3\Assets\script\ControlEvent.cs" Line="1730" Column="3" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
