@@ -1,24 +1,6 @@
 Base path: E:/Program Files/Unity32/Unity/Editor/Data
-Pipe name: \\.\pipe\UnityShaderCompiler-32bit-1-4716
+Pipe name: \\.\pipe\UnityShaderCompiler-32bit-1-5684
 Cmd: getPlatforms
-Cmd: preprocess
-  insize=4320 outsize=1045 ok=1
-Cmd: preprocess
-  insize=13263 outsize=2671 ok=1
-Cmd: preprocess
-  insize=1126 outsize=300 ok=1
-Cmd: preprocess
-  insize=1856 outsize=350 ok=1
-Cmd: preprocess
-  insize=12408 outsize=2547 ok=1
-Cmd: preprocess
-  insize=1854 outsize=350 ok=1
-Cmd: preprocess
-  insize=1854 outsize=350 ok=1
-Cmd: preprocess
-  insize=1890 outsize=547 ok=1
-Cmd: preprocess
-  insize=1932 outsize=350 ok=1
 Cmd: compileSnippet
   error: 2 plat 1 at (47): variable 'o' used without having been completely initialized\nCompiling Vertex program
   api=1 type=0 insize=1127 outsize=0 kw= pd= ok=0

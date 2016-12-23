@@ -407,7 +407,6 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 		containBlock.enabled = true;
 	}*/
 
-	bool isCinemaPress = false;
 	public void cinemaPress(){
 		resetTimer ();
 		hideEventAndInfomation ();
@@ -415,8 +414,9 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 		hideOldeScreen ();
 		StartCoroutine (showCinema ());
 		closeTimer.Start ();
-		isCinemaPress = true;
 	}
+
+	string currenNameLayoutMovie;
 
 	private IEnumerator showCinema(){
 		yield return new WaitForSeconds(0.2F);//for 64bit
@@ -433,7 +433,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 		}
 		
 		GameObject.Find ("PanelcontainCinema").GetComponent<Animator> ().SetBool (m_OpenMovieParameterId, true);
-		currentNameLayoutShow = "PanelcontainCinema";
+		currenNameLayoutMovie = "PanelcontainCinema";
 		showCarousel (false);
 	}
 
@@ -443,7 +443,6 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 		exitvideo ();
 		hideOldeScreen ();
 		StartCoroutine (showTheater ());
-		isCinemaPress = true;
 		closeTimer.Start ();
 	}
 	
@@ -462,7 +461,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 		}
 		
 		GameObject.Find ("PanelcontainTheater").GetComponent<Animator> ().SetBool (m_OpenMovieParameterId, true);
-		currentNameLayoutShow = "PanelcontainTheater";
+		currenNameLayoutMovie = "PanelcontainTheater";
 		showCarousel (false);
 	}
 
@@ -1342,7 +1341,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 			}
 		} catch (System.Exception e) {
 			Debug.Log ("\nofficeName:" + name + ", " + e.ToString ());
-			writetofile.append2File (buginfo, "\nofficeName:" + name + ", " + e.ToString ());
+			//writetofile.append2File (buginfo, "\nofficeName:" + name + ", " + e.ToString ());
 		}
 	}
 
@@ -1363,7 +1362,6 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 		if (loadOfficeVideo) {
 			StartCoroutine(Wait(loadOfficeVideoByPath));
 		}
-		//currentNameLayoutShow = null;
 	}
 
 	void loadOfficeVideoByPath(){
@@ -1697,7 +1695,9 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 	}
 	
 	private char getChar(char c){
-		if("a ã ă á ắ ấ à ằ ầ ặ â ậ A Ă Á Ắ Ấ Â À Ằ Ầ Ặ Ậ".IndexOf(c)>=0)
+		if (c == ' ')
+			return c;
+		else if("a ã ă á ắ ấ à ằ ầ ặ â ậ A Ă Á Ắ Ấ Â À Ằ Ầ Ặ Ậ".IndexOf(c)>=0)
 			return 'a';
 		else if("e é ế è ề ê ẹ ệ E É Ê Ế È Ề Ẹ &".IndexOf(c)>=0)
 			return 'e';
@@ -2098,20 +2098,18 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 	}
 
 	void hideOldeScreen(){
-		if (currentNameLayoutShow != null) {
-			if( isCinemaPress){
-				GameObject.Find (currentNameLayoutShow).GetComponent<Animator> ().SetBool (m_OpenMovieParameterId, false);
-				isCinemaPress = false;
-				hideCinemaLayout();
-				showCarousel(true);
-				closeTimer.Stop();
-			}
-			else
-				GameObject.Find (currentNameLayoutShow).GetComponent<Animator> ().SetBool (m_OpenParameterId, false);
-			currentNameLayoutShow = null;
-			hideEventLayout ();
-
+		if (currenNameLayoutMovie != null) {
+			GameObject.Find (currenNameLayoutMovie).GetComponent<Animator> ().SetBool (m_OpenMovieParameterId, false);
+			//hideCinemaLayout();
+			showCarousel (true);
+			currenNameLayoutMovie = null;
+			closeTimer.Stop ();
 		}
+		if (currentNameLayoutShow != null) {
+			GameObject.Find (currentNameLayoutShow).GetComponent<Animator> ().SetBool (m_OpenParameterId, false);
+			currentNameLayoutShow = null;
+		}
+		hideEventLayout ();
 	}
 
 	public void hideEventLayout(){
@@ -2214,6 +2212,8 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 		resetTimer ();
 		closeTimer.Stop ();
 		closeTimer.Start ();
+		if (currentCinema >= cinemaId.Count)
+			currentCinema = 0;
 		if (cinemaId.Count > maxCinema) {
 			//Debug.Log("currentCinema:"+currentCinema);
 			for (int i = 1; i <= maxCinema; i++) {
@@ -2232,12 +2232,12 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 					GameObject.Find ("cineRoom" + i).GetComponent<Text> ().text = evs.room;
 					GameObject.Find ("cineSchedules" + i).GetComponent<Text> ().text = evs.schedules;
 					GameObject.Find ("cineOther" + i).GetComponent<Text> ().text = evs.other;
-
-					currentCinema++;
 				} else {
 					//Debug.Log("disable currentCinema:"+currentCinema+", index:"+i);
 					GameObject.Find("cine"+i).GetComponent<Canvas> ().enabled = false;
 				}
+				
+				currentCinema++;
 			}
 			if (currentCinema >= cinemaId.Count)
 				currentCinema = 0;
@@ -2263,6 +2263,8 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 		resetTimer ();
 		closeTimer.Stop ();
 		closeTimer.Start ();
+		if (currentTheater >= theaterId.Count)
+			currentTheater = 0;
 		if (theaterId.Count > maxTheater) {
 			//Debug.Log("currentCinema:"+currentCinema);
 			for (int i = 1; i <= maxTheater; i++) {
@@ -2280,12 +2282,11 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 					GameObject.Find ("theaterSchedules" + i).GetComponent<Text> ().text = evs.schedules;
 					GameObject.Find ("theaterSeason" + i).GetComponent<Text> ().text = evs.season;
 					GameObject.Find ("theaterOther" + i).GetComponent<Text> ().text = evs.other;
-					
-					currentTheater++;
 				} else {
 					//Debug.Log("disable currentCinema:"+currentCinema+", index:"+i);
 					GameObject.Find("theater"+i).GetComponent<Canvas> ().enabled = false;
-				}
+				}				
+				currentTheater++;
 			}
 			if (currentTheater >= theaterId.Count)
 				currentTheater = 0;
@@ -2320,7 +2321,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 			if (x != "") {
 				string[] info = x.Split (new string[]{" "}, System.StringSplitOptions.None);
 				if ((isMaster && info [0].ToLower () [1] == '8') || (!isMaster && info [0].ToLower () [1] != '8')) {
-					if (info [3].ToLower ().IndexOf (segement) >= 0 && info [1] != "for_empty_office") {
+					if (info [3].ToLower () == segement && info [1] != "for_empty_office") {
 						haveResult = true;
 						StartCoroutine (loadTexture4Office (info [0], convertToUtf8(toNormalString(info [1])), toNormalString(info[4]), currentIndex, null, toNormalString(info[2])));
 						if(currentIndex<maxOffice)
@@ -2453,7 +2454,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 		} else {
 			officeFliter.text = texxx + name;
 		}
-		if (officeFliter.text.Length > 3) {
+		if (officeFliter.text.Length > 2) {
 			StartCoroutine (searchOffice (officeFliter.text));
 		} else if(keycurrentIndex > 0){
 			Debug.Log("clear all office in fliter!!");

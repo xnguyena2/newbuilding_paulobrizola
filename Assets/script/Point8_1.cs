@@ -279,7 +279,7 @@ namespace AssemblyCSharp
 
 		static Vector3[] start1 = new Vector3[] { start, p1};
 		static Vector3[] start2 = new Vector3[] { start, p1, p2};
-		static Vector3[] start3 = new Vector3[] { start, p1, p4, p3};
+		static Vector3[] start3 = new Vector3[] { start, p4, p3};
 		static Vector3[] start4 = new Vector3[] { start, p4};
 		static Vector3[] start5 = new Vector3[] { start, p5 };
 		static Vector3[] start6 = new Vector3[] { start, p5, p6};
@@ -743,7 +743,6 @@ namespace AssemblyCSharp
 			PositnCamera.Add(name, PositnCamera[camera]);
 			LookatCamera.Add(name,LookatCamera[camera]);
 		}
-
 	}
 }
 
