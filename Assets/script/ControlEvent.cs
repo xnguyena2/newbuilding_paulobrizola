@@ -71,11 +71,11 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 		"selectorsegmentarrow","selectorsegmentarrowhandi","selectorofficearrow","selectorofficearrowhandi",
 		"selectorstorearrow","selectorstorearrowhandi","eventbtn","eventbtnhandi","eventbtnsmall","eventbtnsmallhandi",
 		"gyms","art","bank","bijou","hair",
-		"shoes", "home", "party", "others","electric", 
+		"shoes", "home", "party", "others","electric", "pharma",
 		"natural","gastronomy","jewelry","automotive", "libraries",		
 		"womenfashion","kidfashion","lingerie","menfashion","unisexfashion",
 		"optics","petshop","kiosks","telephone",
-		"gymshandi","arthandi","bankhandi","bijouhandi","hairhandi",
+		"gymshandi","arthandi","bankhandi","bijouhandi","hairhandi","pharmahandi",
 		"shoeshandi", "homehandi", "partyhandi", "othershandi","electrichandi",
 		"naturalhandi","gastronomyhandi","jewelryhandi","automotivehandi", "librarieshandi",
 		"womenfashionhandi","kidfashionhandi","lingeriehandi","menfashionhandi","unisexfashionhandi",
@@ -96,11 +96,11 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 		"brazilselectorsegmentarrow","brazilselectorsegmentarrowhandi","brazilselectorofficearrow","brazilselectorofficearrowhandi",
 		"brazilselectorstorearrow","brazilselectorstorearrowhandi",
 		"brazilgyms","brazilart","brazilbank","brazilbijou","brazilhair",
-		"brazilshoes", "brazilhome", "brazilparty", "brazilothers","brazilelectric", 
+		"brazilshoes", "brazilhome", "brazilparty", "brazilothers","brazilelectric", "brazilpharma",
 		"brazilnatural","brazilgastronomy","braziljewelry","brazilautomotive", "brazillibraries",		
 		"brazilwomenfashion","brazilkidfashion","brazillingerie","brazilmenfashion","brazilunisexfashion",
 		"braziloptics","brazilpetshop","brazilkiosks","braziltelephone",
-		"brazilgymshandi","brazilarthandi","brazilbankhandi","brazilbijouhandi","brazilhairhandi",
+		"brazilgymshandi","brazilarthandi","brazilbankhandi","brazilbijouhandi","brazilhairhandi","brazilpharmahandi",
 		"brazilshoeshandi", "brazilhomehandi", "brazilpartyhandi", "brazilothershandi","brazilelectrichandi",
 		"brazilnaturalhandi","brazilgastronomyhandi","braziljewelryhandi","brazilautomotivehandi", "brazillibrarieshandi",
 		"brazilwomenfashionhandi","brazilkidfashionhandi","brazillingeriehandi","brazilmenfashionhandi","brazilunisexfashionhandi",
@@ -119,12 +119,12 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 		"spanishsegment","spanishsegmenthandi","spanishselectorletterarrow","spanishselectorletterarrowhandi","spanishselectorblockarrow","spanishselectorblockarrowhandi","spanishselectornumberarrow","spanishselectornumberarrowhandi",
 		"spanishselectorsegmentarrow","spanishselectorsegmentarrowhandi","spanishselectorofficearrow","spanishselectorofficearrowhandi",
 		"spanishselectorstorearrow","spanishselectorstorearrowhandi",
-		"spanishgyms","spanishart","spanishbank","spanishbijou","spanishhair",
+		"spanishgyms","spanishart","spanishbank","spanishbijou","spanishhair","spanishpharma",
 		"spanishshoes", "spanishhome", "spanishparty", "spanishothers","spanishelectric", 
 		"spanishnatural","spanishgastronomy","spanishjewelry","spanishautomotive", "spanishlibraries",		
 		"spanishwomenfashion","spanishkidfashion","spanishlingerie","spanishmenfashion","spanishunisexfashion",
 		"spanishoptics","spanishpetshop","spanishkiosks","spanishtelephone",
-		"spanishgymshandi","spanisharthandi","spanishbankhandi","spanishbijouhandi","spanishhairhandi",
+		"spanishgymshandi","spanisharthandi","spanishbankhandi","spanishbijouhandi","spanishhairhandi","spanishpharmahandi",
 		"spanishshoeshandi", "spanishhomehandi", "spanishpartyhandi", "spanishothershandi","spanishelectrichandi",
 		"spanishnaturalhandi","spanishgastronomyhandi","spanishjewelryhandi","spanishautomotivehandi", "spanishlibrarieshandi",
 		"spanishwomenfashionhandi","spanishkidfashionhandi","spanishlingeriehandi","spanishmenfashionhandi","spanishunisexfashionhandi",
@@ -137,11 +137,11 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 
 	string[] segmentNameArray = new string[]{
 		"gyms","art","bank","bijou","hair",
-		"shoes", "home", "party", "others","electric", 
+		"shoes", "home", "party", "pharma", "electric", 
 		"natural","gastronomy","jewelry","automotive", "libraries", 
-
+		
 		"womenfashion","kidfashion","lingerie","menfashion","unisexfashion",
-		"optics","petshop","kiosks","telephone"
+		"optics","petshop","kiosks","telephone", "others"
 	};
 
 	public Button fl1, fl2, fl3, fl4;
@@ -2061,7 +2061,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 				handi = "handi";
 			for (int i = 0; i<15; i++) {
 				Button btn = GameObject.Find ("SG" + i).GetComponent<Button> ();
-				if ((i + offset) < 24) {
+				if ((i + offset) < segmentNameArray.Length) {
 					btn.enabled = true;
 					Color c = btn.targetGraphic.color;
 					c.a = 255f;
@@ -2090,7 +2090,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 				handi = "handi";
 			for (int i = 0; i<15; i++) {
 				Button btn = GameObject.Find ("SG" + i).GetComponent<Button> ();
-				if ((i + offset) < 24) {
+				if ((i + offset) < segmentNameArray.Length) {
 					btn.enabled = true;
 					Color c = btn.targetGraphic.color;
 					c.a = 255f;
