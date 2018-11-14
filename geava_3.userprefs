@@ -1,9 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\ControlEvent.cs">
     <Files>
-      <File FileName="..\geava_1\Assets\script\events.cs" Line="35" Column="1" />
-      <File FileName="Assets\script\ControlEvent.cs" Line="176" Column="65" />
+      <File FileName="Assets\script\Point8_3.cs" Line="19" Column="59" />
+      <File FileName="Assets\script\Point8_6.cs" Line="40" Column="7" />
+      <File FileName="Assets\script\Point8_4.cs" Line="1" Column="1" />
+      <File FileName="Assets\script\Point8_2handi.cs" Line="1" Column="1" />
+      <File FileName="Assets\script\ControlEvent.cs" Line="525" Column="122" />
+      <File FileName="Assets\script\Point8_6handicap.cs" Line="38" Column="4" />
+      <File FileName="Assets\script\Point8_5handicap.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -11,6 +11,9 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof (CapsuleCollider))]
 
 public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
+
+	public const int NUMBER_FLOOR = 6;
+
 	public Button searchBtn;
 	public Button reservedBtn;
 	public Button numSearchBtn;
@@ -54,11 +57,13 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 		"backspace","backspacehandi","space","spacehandi","textboxbackground","textboxbackgroundhandi",
 		"officebackground","officebackgroundhandi",
 		"8_1","8_1handi","8_2","8_2handi","8_3","8_3handi","8_4",
-		"8_4handi","8_5","8_5handi",
+		"8_4handi","8_5","8_5handi","8_6","8_6handi",
 		"numberfloor1","numberfloor1handi","numberfloor2","numberfloor2handi",
 		"numberfloor3","numberfloor3handi","numberfloor4","numberfloor4handi",
+		"numberfloor5","numberfloor5handi","numberfloor6","numberfloor6handi",
 		"n-130","n-130handi","131-178","131-178handi","n-230","n-230handi","231-265","231-265handi",
 		"n-330","n-330handi","331-371","331-371handi","401-406","401-406handi",
+		"501-n","501-nhandi","n-q96","n-q96handi",
 		"handicap","backgroundevnthandi","backgroundevnt","eventDateBackgroundhandi","eventDateBackground",
 		"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",
 		"Ahandi","Bhandi","Chandi","Dhandi","Ehandi","Fhandi","Ghandi","Hhandi","Ihandi","Jhandi","Khandi","Lhandi","Mhandi","Nhandi",
@@ -85,9 +90,10 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 		"brazilhandicap",
 		"brazilbackspace","brazilbackspacehandi","brazilspace","brazilspacehandi",
 		"brazil8_1","brazil8_1handi","brazil8_2","brazil8_2handi","brazil8_3","brazil8_3handi",
-		"brazil8_4","brazil8_4handi","brazil8_5","brazil8_5handi",
+		"brazil8_4","brazil8_4handi","brazil8_5","brazil8_5handi","brazil8_6","brazil8_6handi",
 		"brazilnumberfloor1","brazilnumberfloor1handi","brazilnumberfloor2","brazilnumberfloor2handi",
 		"brazilnumberfloor3","brazilnumberfloor3handi","brazilnumberfloor4","brazilnumberfloor4handi",
+		"brazilnumberfloor5","brazilnumberfloor5handi","brazilnumberfloor6","brazilnumberfloor6handi",
 		"brazilatoz","brazilatozhandi","brazilbathroom","brazilbathroomhandi",
 		"brazileventbtn","brazileventbtnhandi","brazilevents","brazileventbtnsmall","brazileventbtnsmallhandi",
 		"brazilnumber","brazilnumberhandi",
@@ -110,9 +116,10 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 		"spanishhandicap",
 		"spanishbackspace","spanishbackspacehandi","spanishspace","spanishspacehandi",
 		"spanish8_1","spanish8_1handi","spanish8_2","spanish8_2handi","spanish8_3","spanish8_3handi",
-		"spanish8_4","spanish8_4handi","spanish8_5","spanish8_5handi",
+		"spanish8_4","spanish8_4handi","spanish8_5","spanish8_5handi","spanish8_6","spanish8_6handi",
 		"spanishnumberfloor1","spanishnumberfloor1handi","spanishnumberfloor2","spanishnumberfloor2handi",
 		"spanishnumberfloor3","spanishnumberfloor3handi","spanishnumberfloor4","spanishnumberfloor4handi",
+		"spanishnumberfloor5","spanishnumberfloor5handi","spanishnumberfloor6","spanishnumberfloor6handi",
 		"spanishatoz","spanishatozhandi","spanishbathroom","spanishbathroomhandi",
 		"spanisheventbtn","spanisheventbtnhandi","spanishevents","spanisheventbtnsmall","spanisheventbtnsmallhandi",
 		"spanishnumber","spanishnumberhandi",
@@ -159,6 +166,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 	Vector3 block8_3 = new Vector3 (297.31f, 0.2f, 187.78f);
 	Vector3 block8_4 = new Vector3 (298.42f, 0.2f, 191.4f);
 	Vector3 block8_5 = new Vector3 (298.4f, 0.2f, 187.5f);
+	Vector3 block8_6 = new Vector3 (297.9f, 0.2f, 188.1f);
 
 
 	Vector3 block8_1h = new Vector3 (298.96f, 1000f, 187.54f);
@@ -166,11 +174,13 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 	Vector3 block8_3h = new Vector3 (297.31f, 1000f, 187.78f);
 	Vector3 block8_4h = new Vector3 (298.42f, 1000f, 191.4f);
 	Vector3 block8_5h = new Vector3 (298.4f, 1000f, 187.5f);
+	Vector3 block8_6h = new Vector3 (297.9f, 1000f, 188.1f);
 
 	Vector3 block8_1transparent = new Vector3 (298.96f, 1000f, 187.54f);
 	Vector3 block8_2transparent = new Vector3 (300.06f, 1000f, 185.28f);
 	Vector3 block8_3transparent = new Vector3 (297.31f, 1000f, 187.78f);
 	Vector3 block8_4transparent = new Vector3 (298.42f, 1000f, 191.4f);
+	Vector3 block8_5transparent = new Vector3 (298.4f, 1000f, 187.5f);
 		
 	
 	static Vector3 posBlock6 = new Vector3 (282.9F, 44.0F, 244.7F);
@@ -188,11 +198,13 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 	Point8_3 block8_3Info = new Point8_3 ();
 	Point8_4 block8_4Info = new Point8_4 ();	
 	Point8_5 block8_5Info = new Point8_5 ();
+	Point8_6 block8_6Info = new Point8_6 ();
 	
 	Point8_1handicap block8_1Infohandicap = new Point8_1handicap ();
 	Point8_2handicap block8_2Infohandicap = new Point8_2handicap ();
 	Point8_4handicap block8_4Infohandicap = new Point8_4handicap ();
 	Point8_5handicap block8_5Infohandicap = new Point8_5handicap ();
+	Point8_6handicap block8_6Infohandicap = new Point8_6handicap ();
 
 
 	
@@ -272,6 +284,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 		PositnBlock.Add ("block8_3", block8_3);
 		PositnBlock.Add ("block8_4", block8_4);
 		PositnBlock.Add ("block8_5", block8_5);
+		PositnBlock.Add ("block8_6", block8_6);
 		
 
 		PositnBlock.Add ("block8_1h", block8_1h);
@@ -279,11 +292,13 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 		PositnBlock.Add ("block8_3h", block8_3h);
 		PositnBlock.Add ("block8_4h", block8_4h);
 		PositnBlock.Add ("block8_5h", block8_5h);
+		PositnBlock.Add ("block8_6h", block8_6h);
 		
 		PositnBlock.Add("block8_1transparenth",block8_1transparent);
 		PositnBlock.Add("block8_2transparenth",block8_2transparent);
 		PositnBlock.Add("block8_3transparenth",block8_3transparent);
 		PositnBlock.Add("block8_4transparenth",block8_4transparent);
+		PositnBlock.Add("block8_5transparenth",block8_5transparent);
 		
 		PositnBlock.Add("posBlock6",posBlock6);
 		PositnBlock.Add("lookatBlock6",lookatBlock6);
@@ -501,10 +516,14 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 			GameObject.Find("n-330").GetComponent<Image>().sprite = ResourcesDictionary["n-330handi"];
 			GameObject.Find("331-371").GetComponent<Image>().sprite = ResourcesDictionary["331-371handi"];
 			GameObject.Find("401-406").GetComponent<Image>().sprite = ResourcesDictionary["401-406handi"];
+			GameObject.Find("501-n").GetComponent<Image>().sprite = ResourcesDictionary["501-nhandi"];
+			GameObject.Find("n-q96").GetComponent<Image>().sprite = ResourcesDictionary["n-q96handi"];
 			GameObject.Find("Panelcontainfloor1").GetComponent<Image>().sprite = ResourcesDictionary[currentLanguage+"numberfloor1handi"];
 			GameObject.Find("Panelcontainfloor2").GetComponent<Image>().sprite = ResourcesDictionary[currentLanguage+"numberfloor2handi"];
 			GameObject.Find("Panelcontainfloor3").GetComponent<Image>().sprite = ResourcesDictionary[currentLanguage+"numberfloor3handi"];
 			GameObject.Find("Panelcontainfloor4").GetComponent<Image>().sprite = ResourcesDictionary[currentLanguage+"numberfloor4handi"];
+			GameObject.Find("Panelcontainfloor5").GetComponent<Image>().sprite = ResourcesDictionary[currentLanguage+"numberfloor5handi"];
+			GameObject.Find("Panelcontainfloor6").GetComponent<Image>().sprite = ResourcesDictionary[currentLanguage+"numberfloor6handi"];
 			GameObject.Find("pleaseselectyourletter").GetComponent<Image>().sprite = ResourcesDictionary[currentLanguage+"selectorletterarrowhandi"];
 			GameObject.Find("pleaseselectyournumber").GetComponent<Image>().sprite = ResourcesDictionary[currentLanguage+"selectornumberarrowhandi"];
 			GameObject.Find("pleaseselectyouroffice").GetComponent<Image>().sprite = ResourcesDictionary[currentLanguage+"selectorofficearrowhandi"];
@@ -561,10 +580,14 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 			GameObject.Find("n-330").GetComponent<Image>().sprite = ResourcesDictionary["n-330"];
 			GameObject.Find("331-371").GetComponent<Image>().sprite = ResourcesDictionary["331-371"];
 			GameObject.Find("401-406").GetComponent<Image>().sprite = ResourcesDictionary["401-406"];
+			GameObject.Find("501-n").GetComponent<Image>().sprite = ResourcesDictionary["501-n"];
+			GameObject.Find("n-q96").GetComponent<Image>().sprite = ResourcesDictionary["n-q96"];
 			GameObject.Find("Panelcontainfloor1").GetComponent<Image>().sprite = ResourcesDictionary[currentLanguage+"numberfloor1"];
 			GameObject.Find("Panelcontainfloor2").GetComponent<Image>().sprite = ResourcesDictionary[currentLanguage+"numberfloor2"];
 			GameObject.Find("Panelcontainfloor3").GetComponent<Image>().sprite = ResourcesDictionary[currentLanguage+"numberfloor3"];
 			GameObject.Find("Panelcontainfloor4").GetComponent<Image>().sprite = ResourcesDictionary[currentLanguage+"numberfloor4"];
+			GameObject.Find("Panelcontainfloor5").GetComponent<Image>().sprite = ResourcesDictionary[currentLanguage+"numberfloor5"];
+			GameObject.Find("Panelcontainfloor6").GetComponent<Image>().sprite = ResourcesDictionary[currentLanguage+"numberfloor6"];
 			GameObject.Find("pleaseselectyourletter").GetComponent<Image>().sprite = ResourcesDictionary[currentLanguage+"selectorletterarrow"];
 			GameObject.Find("pleaseselectyournumber").GetComponent<Image>().sprite = ResourcesDictionary[currentLanguage+"selectornumberarrow"];
 			GameObject.Find("pleaseselectyouroffice").GetComponent<Image>().sprite = ResourcesDictionary[currentLanguage+"selectorofficearrow"];
@@ -602,7 +625,7 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 
 	int currentFloor = 3;
 	string handi = "handi";
-	bool[] showAnimatioPressed = new bool[]{true,true,true,true,true};
+	bool[] showAnimatioPressed = new bool[]{true,true,true,true,true,true};
 	public void gotoFloor(int number){		
 		resetTimer ();
 		GameObject.Find ("floor"+number).GetComponent<Animator> ().SetBool (m_showAnimationButtonPressed, showAnimatioPressed[number-1]);
@@ -768,13 +791,21 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 		yield return new WaitForSeconds(0.2F);//for 64bit
 		string[] arrayInfo = null;
 		int min = 0, max = 0;
+		bool firIsCharacter = false;
 		if (number.IndexOf ("-") >= 0) {
 			arrayInfo = number.Split (new string[]{"-"}, System.StringSplitOptions.None);
-			searchInFloor = arrayInfo[1][0];
-			if(arrayInfo[0] != "n")
-				min = int.Parse(arrayInfo[0]);
-			else min = int.Parse(searchInFloor.ToString())*100;
-			max = int.Parse(arrayInfo[1]);
+			searchInFloor = arrayInfo[0][0];
+			if(arrayInfo[1]=="all"){
+				min = max = -1;
+			}else {
+				if(arrayInfo[1] != "n")
+					min = int.Parse(arrayInfo[1]);
+				else{
+					firIsCharacter = true;
+					min = int.Parse(searchInFloor.ToString())*100;
+				}
+				max = int.Parse(arrayInfo[2]);
+			}
 		}
 		bool haveResult = false;
 		cleanTexture ();
@@ -789,8 +820,8 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 				{
 					//Debug.Log(checkInRange(info[2],min,max)+"_"+info[2]);
 					if ((
-						(number[0] == 'n' && (info[2][0] == 'n' || info[2][0] == 'N' || info[2][0] == 'q' || info[2][0] == 'Q' || checkInRange(info[2],min,max))) || 
-							(number[0] != 'n' && info[2][0] != 'n' && checkInRange(info[2],min,max))
+						(firIsCharacter && (info[2][0] == 'n' || info[2][0] == 'N' || info[2][0] == 'q' || info[2][0] == 'Q' || checkInRange(info[2],min,max))) || 
+						(!firIsCharacter && info[2][0] != 'n' && checkInRange(info[2],min,max))
 						)
 					    && 
 					    info[1] != "for_empty_office") {
@@ -827,6 +858,8 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 	}
 
 	bool checkInRange(string text,int min,int max){
+		if (min == max && min == -1)
+			return true;
 		if (max > min) {
 			for (int i = min; i <= max; i++) {
 				if (text.IndexOf (i.ToString ()) >= 0)
@@ -1259,6 +1292,34 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 			
 				posss = block8_4Info.PositnCamera [name];
 				lattt = block8_4Info.LookatCamera [name];
+				havenextcamera = true;
+			} else if (namefloor == "block8_6") {
+				//Debug.Log (name);
+				if (isHandicapMode) {
+					list = block8_6Infohandicap.dictionary [name];
+					list2 = block8_3Info.dictionary ["evelator"];
+					cameraPostion = block8_2Info.PositnCamera ["evelatordown"];
+					lkk = block8_2Info.LookatCamera ["evelatordown"];
+					newLengthList2 = list2.Length;
+				} else {
+					list = block8_6Info.dictionary [name];
+					list2 = block8_3Info.dictionary ["stairup"];
+					cameraPostion = block8_2Info.PositnCamera ["stairup"];
+					lkk = block8_2Info.LookatCamera ["stairup"];
+				}
+				
+				listpoint = new Vector3[list.Length + list2.Length];
+				
+				orgP = GameObject.Find ("block8_3").transform.position;
+				
+				for (int i = 0; i<list2.Length; i++) {
+					listpoint [i] = ratetio * list2 [i] + orgP;
+				}
+				
+				orgP = GameObject.Find (namefloor).transform.position;
+				
+				posss = block8_6Info.PositnCamera [name];
+				lattt = block8_6Info.LookatCamera [name];
 				havenextcamera = true;
 			}
 
@@ -1741,9 +1802,9 @@ public class ControlEvent : MonoBehaviour ,IEventSystemHandler {
 
 	public IEnumerator updateLogo(){
 		stillUpdatingLogo = true;
-		for (int i = 1;i <6; i++){				
-			StartCoroutine (updateIcon (IP + "src/b8" + i + "0" + imageType, "floor"+i+"_root"));
-			yield return new WaitForSeconds(0.1F);
+		for (int i = 1; i <= NUMBER_FLOOR; i++) {				
+			StartCoroutine (updateIcon (IP + "src/b8" + i + "0" + imageType, "floor" + i + "_root"));
+			yield return new WaitForSeconds (0.1F);
 		}
 		stillUpdatingLogo = false;
 		yield return null;
