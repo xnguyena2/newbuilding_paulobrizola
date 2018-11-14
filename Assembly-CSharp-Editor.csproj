@@ -60,6 +60,9 @@
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Advanced.shader" />
      <None Include="Assets\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
      <None Include="Assets\AVProWindowsMedia\Resources\YUV_YVYU2RGBA .shader" />
+ <Reference Include="UnityEngine.Advertisements">
+ <HintPath>E:/Program Files/Unity32/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>E:/Program Files/Unity32/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
  </Reference>
@@ -74,6 +77,9 @@
  </Reference>
  <Reference Include="UnityEditor.Networking">
  <HintPath>E:/Program Files/Unity32/Unity/Editor/Data/UnityExtensions/Unity/Networking/Editor/UnityEditor.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Analytics">
+ <HintPath>E:/Program Files/Unity32/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>E:/Program Files/Unity32/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
