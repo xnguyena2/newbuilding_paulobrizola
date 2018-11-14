@@ -56,7 +56,6 @@
      <Compile Include="Assets\script\CameraViewPostion.cs" />
      <Compile Include="Assets\script\ControlEvent.cs" />
      <Compile Include="Assets\script\DragVideo.cs" />
-     <Compile Include="Assets\script\NewBehaviourScript.cs" />
      <Compile Include="Assets\script\Point8_1.cs" />
      <Compile Include="Assets\script\Point8_1handicap.cs" />
      <Compile Include="Assets\script\Point8_2.cs" />
