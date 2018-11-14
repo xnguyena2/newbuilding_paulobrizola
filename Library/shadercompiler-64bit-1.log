@@ -1,12 +1,7 @@
-Base path: E:/Program Files/Unity/Editor/Data
-Pipe name: \\.\pipe\UnityShaderCompiler-64bit-1-3772
+Base path: E:/Program Files/Unity32/Unity/Editor/Data
+Pipe name: \\.\pipe\UnityShaderCompiler-64bit-1-10224
 Cmd: getPlatforms
-Cmd: compileSnippet
-  error: 2 plat 1 at (47): variable 'o' used without having been completely initialized\nCompiling Vertex program
-  api=1 type=0 insize=1127 outsize=0 kw= pd= ok=0
-Cmd: compileSnippet
-  error: 2 plat 1 at (49): variable 'o' used without having been completely initialized\nCompiling Vertex program
-  api=1 type=0 insize=1806 outsize=0 kw= pd= ok=0
-Cmd: compileSnippet
-  error: 2 plat 1 at (49): variable 'o' used without having been completely initialized\nCompiling Vertex program
-  api=1 type=0 insize=1884 outsize=0 kw= pd= ok=0
+Unhandled exception: Readfile from pipe failed. GLE=The pipe has been ended.
+
+
+Quitting shader compiler process
