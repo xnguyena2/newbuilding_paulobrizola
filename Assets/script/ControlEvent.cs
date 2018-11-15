@@ -855,7 +855,7 @@ public class ControlEvent : MonoBehaviour, IEventSystemHandler
         Debug.Log("min:" + min + ",max:" + max);
         foreach (string x in infomationForSearch)
         {
-            if (x != "")
+            if (!string.IsNullOrEmpty(x) && x[3] != '0')
             {
                 string[] info = x.Split(new string[] { " " }, System.StringSplitOptions.None);
                 if (info[0][2] == searchInFloor)
@@ -1128,13 +1128,15 @@ public class ControlEvent : MonoBehaviour, IEventSystemHandler
 
     public IEnumerator repareNameForSearch()
     {
-        infomationOfName = new string[infomationForSearch.Length];
+        List<string> listOffice = new List<string>();
+        List<string> listAllInfoOffice = new List<string>();
         string temp;
         for (int i = 0; i < infomationForSearch.Length; i++)
         {
             string x = infomationForSearch[i];
-            if (x != "")
+            if (!string.IsNullOrEmpty(x) && x[3] != '0')
             {
+                listAllInfoOffice.Add(x);
                 temp = "";
                 string[] info = x.Split(new string[] { " " }, System.StringSplitOptions.None);
                 string name = convertToUtf8(toNormalString(info[1])).ToLower();
@@ -1144,10 +1146,12 @@ public class ControlEvent : MonoBehaviour, IEventSystemHandler
                     if (ch != '.' && ch != '\'')
                         temp += getChar(ch);
                 }
-                infomationOfName[i] = temp;
+                listOffice.Add(temp);
             }
         }
-        Debug.Log("finished!!!!" + infomationOfName.Length);
+        infomationForSearch = listAllInfoOffice.ToArray();
+        infomationOfName = listOffice.ToArray();
+        Debug.Log("finished!!!!" + infomationForSearch.Length);
         yield return null;
     }
 
@@ -1855,7 +1859,7 @@ public class ControlEvent : MonoBehaviour, IEventSystemHandler
         for (int i = 0; i < infomationOfName.Length; i++)
         {
             string x = infomationOfName[i];
-            if (x != "" && x != null)
+            if (!string.IsNullOrEmpty(x))
             {
                 if (x.IndexOf(name) >= 0 && x != "for_empty_office")
                 {
@@ -2685,7 +2689,7 @@ public class ControlEvent : MonoBehaviour, IEventSystemHandler
         cleanTexture();
         foreach (string x in infomationForSearch)
         {
-            if (x != "")
+            if (!string.IsNullOrEmpty(x) && x[3] != '0')
             {
                 string[] info = x.Split(new string[] { " " }, System.StringSplitOptions.None);
                 if ((isMaster && info[0].ToLower()[1] == '8') || (!isMaster && info[0].ToLower()[1] != '8'))
